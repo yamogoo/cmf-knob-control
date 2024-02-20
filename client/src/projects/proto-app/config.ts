@@ -1,1 +1,1 @@
-export const APP_PREFIX = 'proto-app'
+export const PROTO_APP_PREFIX = 'proto-app'

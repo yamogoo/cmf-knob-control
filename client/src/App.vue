@@ -1,5 +1,4 @@
 <template lang="pug">
-h1 App
 RouterView
 </template>
 
@@ -8,13 +7,15 @@ import { RouterView } from 'vue-router';
 </script>
 
 <style lang="scss">
-#app {
+body {
     position: relative;
     @include box(100vw, 100vh);
+    margin: 0;
+    padding: 0;
+}
 
-    &-container {
-        position: relative;
-        @include box(100%);
-    }
+##{$MAIN_APP_PREFIX} {
+    position: relative;
+    @include box(100vw, 100vh);
 }
 </style>

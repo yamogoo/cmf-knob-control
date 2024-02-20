@@ -1,0 +1,7 @@
+@function map-read($item-names, $prop-name) {
+    @each $item-name, $item-value in $item-names {
+        @if map-has-key($item-names, $prop-name) {
+            @return map-get($item-names, $prop-name);
+        }
+    }
+}

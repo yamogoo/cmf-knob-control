@@ -1,1 +1,1 @@
-export const APP_PREFIX = 'mogoo-app'
+export const MAIN_APP_PREFIX = 'mogoo-app'

@@ -1,0 +1,37 @@
+@mixin respond-rules($styles: ()) {
+    @include respond-above(xl) {
+        @each $prop, $map in $styles {
+            @if map-has-key($map, 'xl') {
+                #{$prop}: map-get($map, 'xl');
+            }
+        }
+    }
+    @include respond-between(lg, xl) {
+        @each $prop, $map in $styles {
+            @if map-has-key($map, 'lg') {
+                #{$prop}: map-get($map, 'lg');
+            }
+        }
+    }
+    @include respond-between(md, lg) {
+        @each $prop, $map in $styles {
+            @if map-has-key($map, 'md') {
+                #{$prop}: map-get($map, 'md');
+            }
+        }
+    }
+    @include respond-between(sm, md) {
+        @each $prop, $map in $styles {
+            @if map-has-key($map, 'sm') {
+                #{$prop}: map-get($map, 'sm');
+            }
+        }
+    }
+    @include respond-below(sm) {
+        @each $prop, $map in $styles {
+            @if map-has-key($map, 'xs') {
+                #{$prop}: map-get($map, 'xs');
+            }
+        }
+    }
+}
