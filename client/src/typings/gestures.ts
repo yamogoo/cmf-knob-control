@@ -1,14 +1,10 @@
-export interface GesturesPoint<P = number | null> {
-  x: P
-  y: P
-}
+import type { Point } from './controls'
 
-type GesturesPositions = 'start' | 'end' | 'delta' | 'prevDelta' | 'actual'
+type GesturesPositions = 'start' | 'delta' | 'previous' | 'current'
 
-type GesturesBasicPositions = 'previous' | 'current'
+type GesturesBasicPositions = 'previous' | 'current' | 'delta'
 
 export interface GesturesBasicCursorPosition<P = number>
-  extends Record<GesturesBasicPositions, GesturesPoint<P>> {}
+  extends Record<GesturesBasicPositions, Point<P>> {}
 
-export interface GesturesCursorPosition<P = number>
-  extends Record<GesturesPositions, GesturesPoint<P>> {}
+export interface GesturesCursorPosition<P = number> extends Record<GesturesPositions, Point<P>> {}

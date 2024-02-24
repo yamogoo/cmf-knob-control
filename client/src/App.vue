@@ -17,5 +17,10 @@ body {
 ##{$MAIN_APP_PREFIX} {
     position: relative;
     @include box(100vw, 100vh);
+
+    * {
+        @extend %#{$MAIN_APP_PREFIX}-typo;
+        font-size: 1em;
+    }
 }
 </style>

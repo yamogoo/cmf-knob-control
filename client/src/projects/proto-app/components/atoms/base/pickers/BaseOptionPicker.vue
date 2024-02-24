@@ -1,10 +1,11 @@
 <template lang="pug">
 select(
-    :class="[`${PROTO_APP_PREFIX}-option-picker`]"
     v-model="selectedData"
+    :class="[`${PROTO_APP_PREFIX}-option-picker`]"
 )
     option(
         v-for="option, idx in options"
+        :key="idx"
     )
         slot(:id="idx" :option="option")
 </template>

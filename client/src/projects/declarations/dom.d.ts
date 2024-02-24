@@ -1,19 +1,21 @@
-import { KnobEmittedData, ButtonEmmitedData } from '@app/types/controls'
+import { KnobEvent, ButtonEvent } from '@app/types/controls'
 
 declare global {
   interface GlobalEventHandlersEventMap {
-    knobturnleft: CustomEvent<KnobEmittedData>
-    knobturnright: CustomEvent<KnobEmittedData>
-    knobpress: CustomEvent<KnobEmittedData>
-    knobrelease: CustomEvent<KnobEmittedData>
-    knobdata: CustomEvent<KnobEmittedData>
+    knobturnleft: KnobEvent
+    knobturnright: KnobEvent
+    knobpress: KnobEvent
+    knobrelease: KnobEvent
+    knobdata: KnobEvent
 
-    launchbutton: CustomEvent<ButtonEmmitedData>
-    launchbuttonpress: CustomEvent<ButtonEmmitedData>
-    launchbuttonrelease: CustomEvent<ButtonEmmitedData>
+    launchbutton: ButtonEvent
+    launchbuttonpress: ButtonEvent
+    launchbuttonrelease: ButtonEvent
 
-    backbutton: CustomEvent<ButtonEmmitedData>
-    backbuttonpress: CustomEvent<ButtonEmmitedData>
-    backbuttonrelease: CustomEvent<ButtonEmmitedData>
+    backbutton: ButtonEvent
+    backbuttonpress: ButtonEvent
+    backbuttonrelease: ButtonEvent
+
+    lidsensor: ButtonEvent
   }
 }

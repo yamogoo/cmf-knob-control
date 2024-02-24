@@ -1,8 +1,8 @@
 <template lang="pug">
 BaseOptionPicker(
+    v-slot="{ option }"
     :options="options"
     :init-value="initValue"
-    v-slot="{ option }"
     @on-update-option="onUpdateOption"
 )
     div(:class="[`${PROTO_APP_PREFIX}-option-picker__item`]") {{ option.name }}

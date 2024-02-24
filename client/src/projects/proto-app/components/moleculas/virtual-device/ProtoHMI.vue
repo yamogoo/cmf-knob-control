@@ -2,12 +2,12 @@
 div(:class="[`${PROTO_APP_PREFIX}-hmi`]")
     ProtoHousing(
         v-if="visualType === ProtoVisualTypes.HOUSING"
-        :showKnob="showKnob"
+        :show-knob="showKnob"
     )
         slot
     ProtoFrontPanel(
         v-else-if="visualType === ProtoVisualTypes.FRONT_PANEL"
-        :showKnob="showKnob"
+        :show-knob="showKnob"
     )
         slot
     ProtoDisplay(

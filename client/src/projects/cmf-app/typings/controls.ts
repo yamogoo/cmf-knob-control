@@ -3,11 +3,10 @@ export interface KnobEmittedData {
   count: number
   dir: number
 }
-
-export interface KnobEvent extends CustomEvent<KnobEmittedData> {}
-
 export interface ButtonEmmitedData {
   state: boolean
 }
+
+export interface KnobEvent extends CustomEvent<KnobEmittedData> {}
 
 export interface ButtonEvent extends CustomEvent<ButtonEmmitedData> {}
