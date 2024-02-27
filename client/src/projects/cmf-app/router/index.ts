@@ -3,7 +3,7 @@ import { _ROOT_PATH_PREFIX, absoluteUrls } from './urls'
 
 const routes = [
   {
-    alias: _ROOT_PATH_PREFIX,
+    alias: [_ROOT_PATH_PREFIX, '/'],
     path: `${absoluteUrls.SPLASH}`,
     component: () => import('../views/SplashScreenView.vue')
   },

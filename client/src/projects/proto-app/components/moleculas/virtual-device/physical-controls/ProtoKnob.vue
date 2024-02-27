@@ -22,7 +22,6 @@ div(
             ref="refButton"
             :class="[`${PROTO_APP_PREFIX}-knob__button`, {'focused': isButtonFocused}]"
             :style="`width: ${buttonSize}px; height: ${buttonSize}px;`"
-            @click="onButtonPress"
         )
             Transition(
                 :css="false"
@@ -253,11 +252,6 @@ const buttonPointerDownHandler = (): void => {
 
 const buttonringMouseUpHandler = (): void => {
     onPress(false)
-};
-
-const onButtonPress = () => {
-    const data: KnobEmittedData = ({ dir: 0, count, angle: angle.value });
-    emit('onPress', data);
 };
 
 /* * * Animations * * */

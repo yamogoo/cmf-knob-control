@@ -1,42 +1,120 @@
 <template lang="pug">
 component(
     :is="component"
-    v-if="show"
-    :class="[`${APP_PREFIX}-icon`]"
+    v-if="show && name"
+    :class="[CLASS_NAME, `${CLASS_NAME}--${color}`]"
 )
 </template>
-    
+
 <script setup lang="ts">
-import { APP_PREFIX } from '@/projects/cmf-app/config';
 import { defineAsyncComponent } from 'vue';
+import { APP_PREFIX } from '@app/config';
+import { Icons } from './icons';
+
+const CLASS_NAME = `${APP_PREFIX}-icon`;
 
 export interface Props {
-    path: string,
+    name?: Icons,
+    color?: Colors,
     show?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    format: 'vue',
-    show: true
+    show: true,
+    name: undefined,
+    color: undefined
 });
 
 const component = defineAsyncComponent(() => {
-    return import(props.path);
+    return import(`./symbols/${props.name}.vue`);
 });
 </script>
-    
+
 <script lang="ts">
 export * from './icons';
+
+export enum Colors {
+    PAPRICA = 'paprica',
+    PAPRICA_DEEP = 'paprica-deep',
+    CARDAMON = 'cardamon',
+    CARDAMON_DEEP = 'cardamon-deep',
+    JUPITER = 'jupiter',
+    JUPITER_DEEP = 'jupiter-deep',
+    WALNUT = 'walnut',
+    WALNUT_DEEP = 'walnut-deep',
+    TURMERIC = 'turmeric',
+    TURMERIC_DEEP = 'turmeric-deep',
+    GRAY = 'gray',
+    GRAY_SHADOW = 'gray-shadow'
+}
 </script>
-    
+
 <style lang="scss">
 .#{$APP_PREFIX} {
+    @include box(100%);
 
     &-icon {
         fill: inherit;
 
         path: {
             fill: inherit;
+        }
+
+        // colors:
+        &.white {
+            fill: $WHITE;
+        }
+
+        &.black {
+            fill: $BLACK;
+        }
+
+        &.gray {
+            fill: $GRAY;
+        }
+
+        &.gray-shadow {
+            fill: $GRAY_SHADOW;
+        }
+
+        &.cardamon {
+            fill: $CARDAMON;
+        }
+
+        &.cardamon-deep {
+            fill: $CARDAMON_DEEP;
+        }
+
+        &.paprica {
+            fill: $PAPRICA;
+        }
+
+        &.paprica-deep {
+            fill: $PAPRICA_DEEP;
+        }
+
+        &.turmeric {
+            fill: $TURMERIC;
+        }
+
+        &.turmeric-deep {
+            fill: $TURMERIC_DEEP;
+        }
+
+        &.jupiter {
+            fill: $JUPITER;
+        }
+
+        &.jupiter-deep {
+            fill: $JUPITER_DEEP;
+        }
+
+        &.walnut {
+            fill: $WALNUT;
+        }
+
+        &.walnut-deep {
+            fill: $WALNUT_DEEP;
         }
     }
 }

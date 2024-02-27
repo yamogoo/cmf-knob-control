@@ -29,7 +29,7 @@ div(
         v-if="showPagination"
         :class="[`${APP_PREFIX}-carousel-stack__footer`]"
     )
-        Pagination(
+        MainPagination(
             v-if="itemsLength > 1"
             :items-count="itemsLength"
             :sid="sid"
@@ -45,7 +45,7 @@ import type { Point } from '@/typings/controls';
 
 // import { AppEvents } from '@/App.vue';
 
-import Pagination from '@app/components/atoms/base/paginations/BasePagination.vue';
+import MainPagination from '@app/components/atoms/base/paginations/MainPagination.vue';
 
 /**
  * Tolerance is percentage of slide position changing (relative to slide width);
@@ -312,8 +312,8 @@ export enum Directions {
 <style lang="scss">
 .#{$APP_PREFIX}-carousel-stack {
     position: relative;
-    @include flexbox();
-    @include flex-direction(column);
+    display: flex;
+    flex-direction: column;
     @include box(100%);
     @include min-box(100%, auto);
     gap: 16px;
@@ -322,7 +322,7 @@ export enum Directions {
 
     &__track {
         position: relative;
-        @include flexbox();
+        display: flex;
         width: 100%;
         min-width: 100%;
         height: 100%;
@@ -330,8 +330,8 @@ export enum Directions {
     }
 
     &__footer {
-        @include flexbox();
-        @include justify-content(center);
+        display: flex;
+        justify-content: center;
         width: 100%;
     }
 
@@ -341,7 +341,7 @@ export enum Directions {
 
     &__item {
         position: relative;
-        @include flexbox();
+        display: flex;
         flex-shrink: 0;
         @include box(100%);
     }

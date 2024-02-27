@@ -1,7 +1,5 @@
 <template lang="pug">
-div(
-    :class="[`${APP_PREFIX}-page`]"
-)
+div(:class="[`${APP_PREFIX}-page`]")
     slot
 </template>
 
@@ -15,5 +13,6 @@ import { APP_PREFIX } from '@app/config';
     display: block;
     @include box(100%);
     padding: 8px;
+    overflow: hidden;
 }
 </style>

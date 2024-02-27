@@ -117,11 +117,14 @@ export enum Statuses {
 <style lang="scss">
 .#{$APP_PREFIX}-control-boxed-button {
     position: relative;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
     border-radius: 24px;
     @include transition(color background-color, 25ms, ease-out);
+    color: $GRAY;
 
     &.released {
         background-color: $GRAY_SHADOW;

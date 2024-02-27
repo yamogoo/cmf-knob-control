@@ -14,6 +14,10 @@ import { APP_PREFIX } from '@app/config';
 ##{$APP_PREFIX} {
     @include box(100%);
 
+    * {
+        box-sizing: border-box;
+    }
+
     .#{$APP_PREFIX}-container {
         @include box(100%);
     }

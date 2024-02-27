@@ -7,9 +7,8 @@ div(
         :id="String(idx - 1)"
         :key="idx - 1"
         :class="[`${APP_PREFIX}-pagination-item`]"
-        :sid="sid"
     )
-        slot(:id="idx")
+        slot(:is-active="idx - 1 === sid")
 </template>
 
 <script setup lang="ts">
@@ -29,8 +28,20 @@ withDefaults(defineProps<Props>(), {
 <style lang="scss">
 .#{$APP_PREFIX}-pagination {
     position: relative;
-    @include flexbox();
+    display: flex;
     @include box(auto, 100%);
     gap: 6px;
+
+    &__item {
+        border-radius: 32px;
+
+        &.normal {
+            background-color: darken($GRAY, 26%);
+        }
+
+        &.active {
+            background-color: $CARDAMON_LIGHT;
+        }
+    }
 }
 </style>

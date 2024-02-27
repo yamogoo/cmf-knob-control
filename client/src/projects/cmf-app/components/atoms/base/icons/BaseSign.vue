@@ -1,7 +1,7 @@
 <template lang="pug">
 div(:class="[CLASS_NAME, `${CLASS_NAME}--${size}`]")
     BaseIcon(
-        :path="name"
+        :name="name"
     )
 </template>
 
@@ -32,7 +32,7 @@ export enum Sizes {
 </script>
 
 <style lang="scss">
-.#{$AIO_APP_PREFIX}-sign {
+.#{$APP_PREFIX}-sign {
 
     &--sm {
         @include box(32px);
