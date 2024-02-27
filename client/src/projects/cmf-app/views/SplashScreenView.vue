@@ -1,10 +1,37 @@
 <template lang="pug">
-div(:class="[`${APP_PREFIX}-splash-screen`]")
-    h2 Splash Screen
+SplashScreenLogo(
+    @on-complete="onLogoAnimComplete"
+)
 </template>
 
 <script setup lang="ts">
-import { APP_PREFIX } from '@app/config';
+import { onUnmounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { absoluteUrls } from '@app/router/urls';
+
+import { timer } from '@utils/timer';
+
+import SplashScreenLogo from '@app/components/atoms/logos/SplashScreenLogo.vue'
+
+const router = useRouter();
+
+let redirectTimer: Function | undefined = undefined;
+
+const time = ref(0);
+
+const onLogoAnimComplete = (): void => {
+    redirectTimer = timer({
+        duration: 500,
+        onUpdate: (t: number): void => {
+            time.value = t
+        },
+        onComplete: () => {
+            router.push({ path: absoluteUrls.STANDBY });
+        }
+    });
+};
+
+onUnmounted(() => { if (redirectTimer) redirectTimer() });
 
 </script>
 

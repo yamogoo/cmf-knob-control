@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { CMF_PREFIX } from './urls'
 
 const routes = [
   {
-    path: '/',
-    name: '/cmf/proto',
+    alias: '/',
+    path: `${CMF_PREFIX}:pathMatch(.*)*`,
+    name: 'Home',
     component: () => import('../views/HomeView.vue')
   }
 ]

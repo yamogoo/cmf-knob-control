@@ -1,5 +1,5 @@
 <template lang="pug">
-NavBar
+//- NavBar
 MainViewport
     ProtoHMI(
         v-if="showHMI"
@@ -8,7 +8,7 @@ MainViewport
 </template>
 
 <script setup lang="ts">
-import NavBar from '@proto/components/atoms/base/NavBar.vue';
+// import NavBar from '@proto/components/atoms/base/NavBar.vue';
 import MainViewport from '@proto/components/moleculas/MainViewport.vue';
 import ProtoHMI from '@proto/components/moleculas/virtual-device/ProtoHMI.vue';
 

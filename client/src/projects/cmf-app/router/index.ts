@@ -1,10 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { _ROOT_PATH_PREFIX, absoluteUrls } from './urls'
 
 const routes = [
   {
-    path: '/',
-    name: '/cmf/proto',
+    alias: _ROOT_PATH_PREFIX,
+    path: `${absoluteUrls.SPLASH}`,
     component: () => import('../views/SplashScreenView.vue')
+  },
+  {
+    path: `${absoluteUrls.STANDBY}`,
+    name: 'Standby Screen',
+    component: () => import('../views/StandbyScreenView.vue')
   }
 ]
 

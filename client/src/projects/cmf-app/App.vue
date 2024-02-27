@@ -3,7 +3,6 @@ div(
     :class="[`${APP_PREFIX}-container`]"
     :data-test="`${APP_PREFIX}`"
 )
-    h1 CMF App
     RouterView
 </template>
     
