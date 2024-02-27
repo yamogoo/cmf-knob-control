@@ -5,7 +5,7 @@ export interface BasicTimer {
   step?: number
 }
 
-export function timer(_op: BasicTimer) {
+export function cancelableTimer(_op: BasicTimer) {
   const op = Object.assign({ duration: 5000, step: 100 }, _op)
   let time: number = op.duration
   const ms = op.step ?? 0
@@ -26,5 +26,17 @@ export function timer(_op: BasicTimer) {
 
   return function () {
     clearInterval(timerId)
+  }
+}
+
+export function cancelableInterval(cb: () => void, ms = 1000): Function {
+  let timerId: ReturnType<typeof setInterval> | undefined = undefined
+
+  timerId = setInterval(() => {
+    cb()
+  }, ms)
+
+  return function () {
+    if (timerId) clearInterval(timerId)
   }
 }

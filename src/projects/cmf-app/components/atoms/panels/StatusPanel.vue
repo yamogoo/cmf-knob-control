@@ -2,8 +2,8 @@
 div(:class="[`${APP_PREFIX}-status-panel`]")
     div(:class="[`${APP_PREFIX}-status-panel-container`]")
         div(:class="[`${APP_PREFIX}-status-panel__status`]")
-            BaseSign(
-                :name="Icons.WIFI"
+            WiFiSign(
+                :level="wifiLevel"
             )
             slot(name="status")
         div(:class="[`${APP_PREFIX}-status-panel__info`]")
@@ -16,8 +16,23 @@ div(:class="[`${APP_PREFIX}-status-panel`]")
 </template>
 
 <script setup lang="ts">
+import { onMounted, onUnmounted, ref } from 'vue';
 import { APP_PREFIX } from '@app/config';
-import BaseSign, { Icons } from '@app/components/atoms/base/icons/BaseSign.vue';
+import { cancelableInterval } from '@/utils';
+
+import WiFiSign from '@app/components/atoms/base/icons/animated-symbols/WiFiSign.vue';
+
+const wifiLevel = ref(0);
+
+let wifiMockTimer: ReturnType<typeof cancelableInterval> | undefined = undefined
+
+onMounted(() => {
+    wifiMockTimer = cancelableInterval(() => {
+        wifiLevel.value = Math.round(Math.random() * 4);
+    }, 1000);
+})
+
+onUnmounted(() => { if (wifiMockTimer) wifiMockTimer() });
 
 </script>
 
@@ -52,9 +67,9 @@ $status-panel: (
         display: flex;
         align-items: center;
 
-        * {
-            fill: lighten($CARDAMON, 12%);
-        }
+        // * {
+        //     fill: lighten($CARDAMON, 12%);
+        // }
     }
 
     &__info {

@@ -131,7 +131,9 @@ export enum Statuses {
     }
 
     &.focused {
-        background-color: lighten($GRAY_SHADOW, 9%);
+        // background-color: lighten($GRAY_SHADOW, 9%);
+        color: lighten($CARDAMON_FADE, 9%);
+        background-color: lighten($CARDAMON, 9%);
     }
 
     &.pressed {

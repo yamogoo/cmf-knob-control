@@ -21,10 +21,8 @@ $main-header: (
 .#{$MAIN_APP_PREFIX}-main-header {
     position: relative;
     display: block;
-    // top: 0;
     width: 100%;
     background-color: none;
-    border-bottom: 1px solid gray;
     overflow: hidden;
 
     @include respond-above(lg) {

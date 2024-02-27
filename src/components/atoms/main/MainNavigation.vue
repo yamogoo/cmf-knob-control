@@ -2,7 +2,6 @@
 nav(
     :class="[`${MAIN_APP_PREFIX}-navigation`]"
 )
-    p Main Navigation
 </template>
 
 <script setup lang="ts">

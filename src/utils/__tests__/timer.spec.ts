@@ -1,10 +1,10 @@
 import { test, expect } from 'vitest'
-import { timer } from '../timer'
+import { cancelableTimer } from '../timer'
 
 const redirectTimer = () => {
   return new Promise((resolve) => {
     let time = 0
-    timer({
+    cancelableTimer({
       duration: 1000,
       step: 100,
       onUpdate: (t: number) => {

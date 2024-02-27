@@ -185,5 +185,9 @@ const onPageEnter = (el: Element, done: () => void): void => {
     width: 100%;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+
+    * {
+        font-size: 23px !important;
+    }
 }
 </style>
