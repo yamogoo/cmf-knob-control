@@ -4,7 +4,6 @@ div(
     :class="[`${PROTO_APP_PREFIX}-knob`]"
     :style="size"
     @pointerdown="onRingCursorDown"
-    @touchstart="onRingCursorTouchDown"
 )
     div(:class="[`${PROTO_APP_PREFIX}-knob-container`]")
         div(:class="`${PROTO_APP_PREFIX}-knob__info`")
@@ -12,7 +11,7 @@ div(
                 span(
                     v-if="showAngle"
                     :class="`${PROTO_APP_PREFIX}-knob__button__descriptor`"
-                ) {{ prevAngle }}° {{ angle }}°, {{ count }}, {{ dir }}
+                ) {{ prevAngle }}° {{ angle }}°, {{ dir }}, {{ count }}
         div(
             :class="`${PROTO_APP_PREFIX}-knob__ring`"
             :style="`transform: rotate(${angle}deg);`"
@@ -22,9 +21,15 @@ div(
         div(
             ref="refButton"
             :class="[`${PROTO_APP_PREFIX}-knob__button`, {'focused': isButtonFocused}]"
+            :style="`width: ${buttonSize}px; height: ${buttonSize}px;`"
             @click="onButtonPress"
         )
-            ProtoKnobLayer02
+            Transition(
+                :css="false"
+                @enter="onButtonEnter"
+                @leave="onButtonLeave"
+            )
+                ProtoKnobLayer02(v-if="isButtonFocused")
         div(
             :class="`${PROTO_APP_PREFIX}-knob__texture`"
         )
@@ -48,14 +53,18 @@ import type { Point } from '@/typings/controls';
 
 export interface Props {
     size?: number,
+    buttonSize?: number,
     showAngle?: boolean,
-    numStepsPerRound?: number
+    numStepsPerRound?: number,
+    stopWhenPointerOut?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
     size: 320,
+    buttonSize: 220,
     showAngle: true,
-    numStepsPerRound: 6
+    numStepsPerRound: 6,
+    stopWhenPointerOut: false
 });
 
 const emit = defineEmits<{
@@ -85,57 +94,64 @@ let position: GesturesCursorPosition<number> = {
 const stepToAngele = computed(() => 360 / props.numStepsPerRound);
 
 const angle = ref(0);
-const isPressed = ref(false);
 const isButtonFocused = ref(false);
-// const isRingTurning = ref(false);
 
 let prevAngle = 0,
-    count = 0, dir = 0, dir2 = 0;
+    count = 0, dir = 0;
 
 const normalizePosition = (p: number, dir: number = 1, offset: number = props.size): number => {
     return (p - offset / 2) * dir;
 };
 
-const getPosition = (e: MouseEvent | TouchEvent): Point => {
-    const x = 'touches' in e ? e.touches[0].clientX : e.clientX;
-    const y = 'touches' in e ? e.touches[0].clientY : e.clientY;
-    return { x: x, y: y };
-};
-
-const getDeltaPosition = (start: Point, end: Point): Point => {
-    const x = end.x - start.x;
-    const y = end.y - start.y;
-    return { x: x, y: y };
-};
-
 onMounted(() => {
-    if (refButton.value) refButton.value.addEventListener('pointerenter', buttonMouseEnterHandler);
+    if (refButton.value) {
+        refButton.value.addEventListener('pointerenter', buttonPointerEnterHandler);
+        refButton.value.addEventListener('pointerdown', buttonPointerDownHandler);
+        refButton.value.addEventListener('pointerleave', buttonPointerLeaveHandler);
+    };
 });
 
 onUnmounted(() => {
     if (refButton.value) {
-        refButton.value.removeEventListener('pointerdown', buttonMouseDownHandler);
-        refButton.value.removeEventListener('pointerleave', buttonMouseDownHandler);
-        refButton.value.removeEventListener('pointerenter', buttonMouseEnterHandler);
+        refButton.value.removeEventListener('pointerdown', buttonPointerDownHandler);
+        refButton.value.removeEventListener('pointerleave', buttonPointerDownHandler);
+        refButton.value.removeEventListener('pointerenter', buttonPointerEnterHandler);
     };
 
     if (refRoot.value) {
-        document.removeEventListener('pointerup', ringMouseUpHandler);
-        document.removeEventListener('pointermove', ringMouseMoveHandler);
-        document.removeEventListener('pointerout', ringMouseOutHandler);
+        document.removeEventListener('pointerup', ringPointerUpHandler);
+        document.removeEventListener('pointermove', ringPointerMoveHandler);
+        document.removeEventListener('pointerout', ringPointerOutHandler);
     }
-})
+});
 
-const onRingCursorTouchDown = (): void => { };
+const getOffset = (e: MouseEvent): Point => {
+    if (refRoot.value) {
+        const rect = refRoot.value?.getBoundingClientRect();
+        const center = { x: rect.x + rect.width / 2, y: rect.y + rect.height / 2 };
+
+        const offsetX = e.clientX - center.x;
+        const offsetY = center.y - e.clientY;
+
+        return { x: offsetX, y: offsetY }
+    }
+    return { x: 0, y: 0 }
+};
 
 const onRingCursorDown = (e: MouseEvent): void => {
-    position.delta.x = 0;
-    position.delta.y = 0;
+    if (refRoot.value) {
 
-    onRingStartMoving(e.offsetX, e.offsetY);
-    document.addEventListener('pointerup', ringMouseUpHandler);
-    document.addEventListener('pointermove', ringMouseMoveHandler);
-    document.addEventListener('pointerout', ringMouseOutHandler);
+        position.delta.x = 0;
+        position.delta.y = 0;
+
+        const { x, y } = getOffset(e);
+        onRingStartMoving(x, y);
+
+        document.addEventListener('pointerup', ringPointerUpHandler);
+        document.addEventListener('pointermove', ringPointerMoveHandler);
+
+        if (props.stopWhenPointerOut) document.addEventListener('pointerout', ringPointerOutHandler);
+    };
 };
 
 const onRingStartMoving = (x: number, y: number): void => {
@@ -145,42 +161,37 @@ const onRingStartMoving = (x: number, y: number): void => {
 
 /* * * Ring (Rotary Encoder) * * */
 
-const calcAngle = (x: number, y: number): number => {
-    if (x >= 0 && y > 0) {
-        return Math.atan(x / y);
-    } else if (y > 0 && x < 0) {
-        return 2 * Math.PI + Math.atan(x / y);
-    } else {
-        return Math.PI + Math.atan(x / y);
-    }
-};
-
 const calcDirectionByAngle = (prev: number, curr: number): number => {
     if (curr >= prev) return 1;
     else if (curr < prev) return -1;
     return 0;
 };
 
-
-const ringMouseMoveHandler: (e: MouseEvent) => void = debounce((e: MouseEvent) => {
+const ringPointerMoveHandler: (e: MouseEvent) => void = debounce((e: MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
-    onTurn(e.offsetX, e.offsetY);
-
-    if (refButton.value) refButton.value.removeEventListener('pointerenter', buttonMouseEnterHandler);
+    if (refRoot.value) {
+        const { x, y } = getOffset(e);
+        onRingStartMoving(x, y);
+        onTurn(x, y);
+    };
 }, .5);
 
-const onTurn = (offsetX: number, offsetY: number) => {
-    position.current.x = normalizePosition(offsetX);
-    position.current.y = normalizePosition(offsetY, - 1);
+const calcAngle = (x: number, y: number): number => {
+    if (x >= 0 && y > 0) return Math.atan(x / y);
+    else if (y > 0 && x < 0) return 2 * Math.PI + Math.atan(x / y);
+    return Math.PI + Math.atan(x / y);
+};
 
-    // direction: 
-    angle.value = Math.round(calcAngle(position.current.x, position.current.y) * 180 / Math.PI);
+const onTurn = (offsetX: number, offsetY: number) => {
+    position.current.x = offsetX;
+    position.current.y = offsetY;
+
+    angle.value = Math.round(calcAngle(offsetX, offsetY) * 180 / Math.PI);
 
     if (position.current.x !== 0 &&
         position.current.y !== 0
-        // && angle.value !== prevAngle
     ) {
 
         dir = calcDirectionByAngle(prevAngle, angle.value);
@@ -207,21 +218,20 @@ const onTurn = (offsetX: number, offsetY: number) => {
     };
 };
 
-const ringMouseUpHandler = (e: MouseEvent): void => {
+const ringPointerUpHandler = (e: MouseEvent): void => {
     e.stopPropagation();
-    if (refButton.value) refButton.value.addEventListener('pointerenter', buttonMouseEnterHandler);
 
-    document.removeEventListener('pointerup', ringMouseUpHandler);
-    document.removeEventListener('pointermove', ringMouseMoveHandler);
-    document.removeEventListener('pointerout', ringMouseOutHandler);
+    document.removeEventListener('pointerup', ringPointerUpHandler);
+    document.removeEventListener('pointermove', ringPointerMoveHandler);
+
+    if (props.stopWhenPointerOut) document.removeEventListener('pointerout', ringPointerOutHandler);
 };
 
-const ringMouseOutHandler = (): void => {
-    document.removeEventListener('pointerup', ringMouseUpHandler);
-    document.removeEventListener('pointermove', ringMouseMoveHandler);
-    document.removeEventListener('pointerout', ringMouseOutHandler);
+const ringPointerOutHandler = (): void => {
+    document.removeEventListener('pointerup', ringPointerUpHandler);
+    document.removeEventListener('pointermove', ringPointerMoveHandler);
+    if (props.stopWhenPointerOut) document.removeEventListener('pointerout', ringPointerOutHandler);
 };
-
 
 /* * * Button (Physical Button) * * */
 
@@ -233,43 +243,21 @@ const onPress = (state: boolean): void => {
     onAnimPress(state);
 };
 
-const buttonMouseEnterHandler = (): void => {
-    isButtonFocused.value = true;
+const buttonPointerEnterHandler = (): void => { isButtonFocused.value = true };
+const buttonPointerLeaveHandler = (): void => { isButtonFocused.value = false };
 
-    if (refButton.value) {
-        refButton.value.addEventListener('pointerleave', buttonMouseLeaveHandler);
-        refButton.value.addEventListener('pointerdown', buttonMouseDownHandler);
-    };
-};
-
-const buttonMouseDownHandler = (): void => {
-    if (refButton.value) {
-        refButton.value.addEventListener('pointerup', buttonringMouseUpHandler);
-    };
-
-    isPressed.value = true;
+const buttonPointerDownHandler = (): void => {
+    document.addEventListener('pointerup', buttonringMouseUpHandler);
     onPress(true);
 };
 
 const buttonringMouseUpHandler = (): void => {
-
-    if (isPressed.value) {
-        isPressed.value = false;
-        onPress(false)
-    };
-};
-
-const buttonMouseLeaveHandler = (): void => {
-    isButtonFocused.value = false;
-
-    if (refButton.value) {
-        refButton.value.removeEventListener('pointerdown', buttonMouseDownHandler);
-        refButton.value.removeEventListener('pointerleave', buttonMouseLeaveHandler);
-    }
+    onPress(false)
 };
 
 const onButtonPress = () => {
-    console.log('press')
+    const data: KnobEmittedData = ({ dir: 0, count, angle: angle.value });
+    emit('onPress', data);
 };
 
 /* * * Animations * * */
@@ -286,12 +274,31 @@ const onAnimPress = (state: boolean): void => {
         });
 };
 
+const onButtonEnter = (el: Element, done: () => void): void => {
+    g.fromTo(el, {
+        opacity: .0
+    }, {
+        opacity: 1.0,
+        ease: 'power4.out',
+        duration: .35,
+        onComplete: done
+    })
+};
+
+const onButtonLeave = (el: Element, done: () => void): void => {
+    g.to(el, {
+        opacity: .0,
+        ease: 'power4.out',
+        duration: .35,
+        onComplete: done
+    });
+};
+
 </script>
 
 <style lang="scss">
 .#{$PROTO_APP_PREFIX}-knob {
     position: relative;
-    // border: 1px solid black;
     border-radius: 100%;
     -khtml-user-select: none;
     -moz-user-select: none;
@@ -302,7 +309,6 @@ const onAnimPress = (state: boolean): void => {
     touch-action: none;
     user-select: none;
     cursor: pointer;
-    // overflow: hidden;
 
     * {
         pointer-events: none;
@@ -364,14 +370,7 @@ const onAnimPress = (state: boolean): void => {
         transform: translate(-50%, -50%);
         border-radius: 100%;
         z-index: 1;
-        // pointer-events: painted;
-        pointer-events: none;
-
-        // &.focused {
-        //     pointer-events: all;
-        // }
-
-        // pointer-events: none;
+        pointer-events: painted;
     }
 }
 </style>

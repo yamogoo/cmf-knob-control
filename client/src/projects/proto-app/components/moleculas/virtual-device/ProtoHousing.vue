@@ -76,9 +76,6 @@ const onKnobRelease = (data: KnobEmittedData): void => {
 
     .#{$PROTO_APP_PREFIX}-knob {
         display: block;
-        // position: absolute;
-        // top: 50%;
-        // right: 40;
     }
 }
 </style>

@@ -13,15 +13,7 @@ import { PROTO_APP_PREFIX } from '@proto/config';
     border-radius: 32px;
     border: 1px solid rgb(34, 34, 34);
     background-color: black;
-    width: 100%;
-    height: 100%;
-
+    @include box(100%);
     overflow: hidden;
-
-    // &-container {
-    //     position: relative;
-    //     width: 100%;
-    //     height: 100%;
-    // }
 }
 </style>
