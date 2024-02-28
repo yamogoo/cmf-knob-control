@@ -7,6 +7,8 @@ Transition(
         :id="[`${APP_PREFIX}-standby-page`]"
     )
         StatusPanel
+            template(#action)
+                MiniClock
         CarouselStack(
             v-slot="screen"
             :sid="screenSid"
@@ -37,6 +39,7 @@ import UIBasePage from '@app/components/atoms/base/pages/BasePage.vue';
 import StatusPanel from '@app/components/atoms/panels/StatusPanel.vue';
 import CarouselStack from '@app/components/atoms/base/stacks/CarouselStack.vue';
 import ControlSectionButton from '@app/components/atoms/base/buttons/ControlSectionButton.vue';
+import MiniClock from '@app/components/atoms/base/timers/MiniClock.vue';
 
 
 enum ButtonTypes {

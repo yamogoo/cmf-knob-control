@@ -20,7 +20,7 @@ body {
 
     * {
         @extend %#{$MAIN_APP_PREFIX}-typo;
-        font-size: 1em;
+        // font-size: 1em;
     }
 }
 </style>

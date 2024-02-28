@@ -11,7 +11,7 @@ div(
                 span(
                     v-if="showAngle"
                     :class="`${PROTO_APP_PREFIX}-knob__button__descriptor`"
-                ) {{ prevAngle }}° {{ angle }}°, {{ dir }}, {{ count }}
+                )
         div(
             :class="`${PROTO_APP_PREFIX}-knob__ring`"
             :style="`transform: rotate(${angle}deg);`"
@@ -28,7 +28,12 @@ div(
                 @enter="onButtonEnter"
                 @leave="onButtonLeave"
             )
-                ProtoKnobLayer02(v-if="isButtonFocused")
+                div(
+                    v-if="isButtonFocused"
+                    :class="`${PROTO_APP_PREFIX}-knob__button__visible-layer`"
+                )
+                    span(:class="`${PROTO_APP_PREFIX}-knob__button__visible-layer__action`") Press
+                    ProtoKnobLayer02
         div(
             :class="`${PROTO_APP_PREFIX}-knob__texture`"
         )
@@ -36,7 +41,7 @@ div(
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import { PROTO_APP_PREFIX } from '@proto/config';
 
 import g from 'gsap';
@@ -90,13 +95,11 @@ let position: GesturesCursorPosition<number> = {
     delta: { x: 0, y: 0 },
 };
 
-const stepToAngele = computed(() => 360 / props.numStepsPerRound);
-
 const angle = ref(0);
+const count = ref(0);
 const isButtonFocused = ref(false);
 
-let prevAngle = 0,
-    count = 0, dir = 0;
+let prevAngle = 0, dir = 0;
 
 const normalizePosition = (p: number, dir: number = 1, offset: number = props.size): number => {
     return (p - offset / 2) * dir;
@@ -160,12 +163,6 @@ const onRingStartMoving = (x: number, y: number): void => {
 
 /* * * Ring (Rotary Encoder) * * */
 
-const calcDirectionByAngle = (prev: number, curr: number): number => {
-    if (curr >= prev) return 1;
-    else if (curr < prev) return -1;
-    return 0;
-};
-
 const ringPointerMoveHandler: (e: MouseEvent) => void = debounce((e: MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -187,35 +184,30 @@ const onTurn = (offsetX: number, offsetY: number) => {
     position.current.x = offsetX;
     position.current.y = offsetY;
 
+    prevAngle = angle.value;
+
     angle.value = Math.round(calcAngle(offsetX, offsetY) * 180 / Math.PI);
 
-    if (position.current.x !== 0 &&
-        position.current.y !== 0
-    ) {
-
-        dir = calcDirectionByAngle(prevAngle, angle.value);
-        if (dir === 1 && angle.value > prevAngle + stepToAngele.value) {
-            count += 1;
-            prevAngle = angle.value;
-
-            const data: KnobEmittedData = ({ dir, count, angle: angle.value });
-            emit('onUpdateData', data);
-            emit('onTurnRight', data);
-        };
-
-        if (dir === -1 && angle.value + stepToAngele.value < prevAngle) {
-            count -= 1;
-            prevAngle = angle.value;
-
-            const data: KnobEmittedData = ({ dir, count, angle: angle.value });
-            emit('onUpdateData', data);
-            emit('onTurnLeft', data);
-        };
-
-        position.previous.x = position.current.x;
-        position.previous.y = position.current.y;
+    // Find direction:
+    if (prevAngle !== angle.value && Math.abs(angle.value - prevAngle) === 1) {
+        dir = angle.value - prevAngle
     };
+
+    if (props.numStepsPerRound > 0) {
+        count.value = Math.round(angle.value / (360 / props.numStepsPerRound));
+    } else {
+        throw new Error('Knob: numStepsPerRound must be greater than zero.')
+    }
 };
+
+watch(count, (prev, next) => {
+    const data: KnobEmittedData = ({ dir, count: next, angle: angle.value });
+
+    if (prev !== next) emit('onUpdateData', data);
+
+    if (dir === 1) emit('onTurnRight', data);
+    else if (dir === -1) emit('onTurnLeft', data);
+});
 
 const ringPointerUpHandler = (e: MouseEvent): void => {
     e.stopPropagation();
@@ -235,7 +227,7 @@ const ringPointerOutHandler = (): void => {
 /* * * Button (Physical Button) * * */
 
 const onPress = (state: boolean): void => {
-    const data: KnobEmittedData = ({ dir: 0, count, angle: angle.value });
+    const data: KnobEmittedData = ({ dir: 0, count: count.value, angle: angle.value });
     emit('onUpdateData', data);
 
     state ? emit('onPress', data) : emit('onRelease', data);
@@ -365,6 +357,16 @@ const onButtonLeave = (el: Element, done: () => void): void => {
         border-radius: 100%;
         z-index: 1;
         pointer-events: painted;
+
+        &__visible-layer {
+
+            &__action {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
     }
 }
 </style>

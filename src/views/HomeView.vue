@@ -2,7 +2,7 @@
 div(
     :class="[`${MAIN_APP_PREFIX}-container`]"
 )
-    MainHeader
+    //- MainHeader
     MainView
         div(:id="PROTO_APP_PREFIX")
 </template>
@@ -12,7 +12,7 @@ import { onMounted } from 'vue';
 import { MAIN_APP_PREFIX } from '@/config'
 import { app as protoApp, PROTO_APP_PREFIX } from '@proto/main';
 
-import MainHeader from '@/components/atoms/main/MainHeader.vue'
+// import MainHeader from '@/components/atoms/main/MainHeader.vue'
 import MainView from '@/components/atoms/main/MainView.vue'
 
 onMounted(() => {
