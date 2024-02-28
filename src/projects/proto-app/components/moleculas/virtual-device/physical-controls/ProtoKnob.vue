@@ -46,13 +46,11 @@ import { PROTO_APP_PREFIX } from '@proto/config';
 
 import g from 'gsap';
 import { debounce } from '@utils/index';
-
-import type { GesturesCursorPosition } from '@typings/gestures';
-import { type KnobEmittedData } from '@app/typings/controls';
+import type { Point } from '@/typings/controls';
+import type { KnobEmittedData } from '@app/typings/controls';
 
 import ProtoKnobLayer01 from './ProtoKnobLayer01.vue';
 import ProtoKnobLayer02 from './ProtoKnobLayer02.vue';
-import type { Point } from '@/typings/controls';
 
 
 export interface Props {
@@ -82,28 +80,15 @@ const emit = defineEmits<{
 const refRoot = ref<HTMLDivElement | null>(null);
 const refButton = ref<HTMLDivElement | null>(null);
 
-const size = computed(() => {
-    return `width: ${props.size}px; height: ${props.size}px;`;
-});
+const size = computed(() => `width: ${props.size}px; height: ${props.size}px;`);
 
 /* * * Events * * */
-
-let position: GesturesCursorPosition<number> = {
-    start: { x: 0, y: 0 },
-    previous: { x: 0, y: 0 },
-    current: { x: 0, y: 0 },
-    delta: { x: 0, y: 0 },
-};
 
 const angle = ref(0);
 const count = ref(0);
 const isButtonFocused = ref(false);
 
-let prevAngle = 0, dir = 0;
-
-const normalizePosition = (p: number, dir: number = 1, offset: number = props.size): number => {
-    return (p - offset / 2) * dir;
-};
+let prevAngle = 0, dir = 0, isManipulatingStart = false;
 
 onMounted(() => {
     if (refButton.value) {
@@ -140,25 +125,15 @@ const getOffset = (e: MouseEvent): Point => {
     return { x: 0, y: 0 }
 };
 
-const onRingCursorDown = (e: MouseEvent): void => {
+const onRingCursorDown = (): void => {
     if (refRoot.value) {
-
-        position.delta.x = 0;
-        position.delta.y = 0;
-
-        const { x, y } = getOffset(e);
-        onRingStartMoving(x, y);
+        isManipulatingStart = true;
 
         document.addEventListener('pointerup', ringPointerUpHandler);
         document.addEventListener('pointermove', ringPointerMoveHandler);
 
         if (props.stopWhenPointerOut) document.addEventListener('pointerout', ringPointerOutHandler);
     };
-};
-
-const onRingStartMoving = (x: number, y: number): void => {
-    position.start.x = normalizePosition(x);
-    position.start.y = normalizePosition(y, - 1);
 };
 
 /* * * Ring (Rotary Encoder) * * */
@@ -169,7 +144,6 @@ const ringPointerMoveHandler: (e: MouseEvent) => void = debounce((e: MouseEvent)
 
     if (refRoot.value) {
         const { x, y } = getOffset(e);
-        onRingStartMoving(x, y);
         onTurn(x, y);
     };
 }, .5);
@@ -181,9 +155,6 @@ const calcAngle = (x: number, y: number): number => {
 };
 
 const onTurn = (offsetX: number, offsetY: number) => {
-    position.current.x = offsetX;
-    position.current.y = offsetY;
-
     prevAngle = angle.value;
 
     angle.value = Math.round(calcAngle(offsetX, offsetY) * 180 / Math.PI);
@@ -194,19 +165,22 @@ const onTurn = (offsetX: number, offsetY: number) => {
     };
 
     if (props.numStepsPerRound > 0) {
-        count.value = Math.round(angle.value / (360 / props.numStepsPerRound));
+        count.value = Math.round(angle.value / 360 * props.numStepsPerRound);
     } else {
         throw new Error('Knob: numStepsPerRound must be greater than zero.')
-    }
+    };
 };
 
 watch(count, (prev, next) => {
-    const data: KnobEmittedData = ({ dir, count: next, angle: angle.value });
+    if (!isManipulatingStart) {
+        const data: KnobEmittedData = ({ dir, count: next, angle: angle.value });
 
-    if (prev !== next) emit('onUpdateData', data);
+        if (prev !== next) emit('onUpdateData', data);
 
-    if (dir === 1) emit('onTurnRight', data);
-    else if (dir === -1) emit('onTurnLeft', data);
+        if (dir === 1) emit('onTurnRight', data);
+        else if (dir === -1) emit('onTurnLeft', data);
+    };
+    isManipulatingStart = false;
 });
 
 const ringPointerUpHandler = (e: MouseEvent): void => {

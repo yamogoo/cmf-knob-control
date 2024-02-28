@@ -25,7 +25,7 @@ Transition(
                     :is-knob-pressed="slot.id === slotSid && isKnobPressed"
                     @on-press="onButtonPress(slot)"
                 )
-                    span {{ slot.name }}
+                    span Item {{ String('0' + slot.id).slice(-2) }}
 </template>
 
 <script setup lang="ts">
