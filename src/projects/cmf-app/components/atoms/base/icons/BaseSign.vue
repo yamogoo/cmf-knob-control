@@ -11,7 +11,7 @@ import BaseIcon, { Icons } from './BaseIcon.vue';
 
 const CLASS_NAME = `${APP_PREFIX}-sign`;
 
-export interface Props {
+interface Props {
     name: Icons;
     size?: Sizes;
 }

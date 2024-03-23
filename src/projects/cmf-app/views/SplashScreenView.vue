@@ -35,4 +35,4 @@ onUnmounted(() => { if (redirectTimer) redirectTimer() });
 
 </script>
 
-<style lang="scss"></style>
+<!-- <style lang="scss"></style> -->

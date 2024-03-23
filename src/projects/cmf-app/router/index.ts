@@ -11,6 +11,11 @@ const routes = [
     path: `${absoluteUrls.STANDBY}`,
     name: 'Standby Screen',
     component: () => import('../views/StandbyScreenView.vue')
+  },
+  {
+    path: `${absoluteUrls.MANUAL_MODE}`,
+    name: 'Manual Mode',
+    component: () => import('../views/ManualModeView.vue')
   }
 ]
 

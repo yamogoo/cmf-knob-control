@@ -11,10 +11,12 @@ const io = new IOServer(server)
 io.on('connection', async (socket: Socket) => {
   socket.emit('init')
 
+  console.log('Server');
+
   socket.on('disconnect', () => {})
 })
 
-io.use((socket, next: () => void): void => {
+io.use((_socket, next: () => void): void => {
   // middleWare
   next()
 })

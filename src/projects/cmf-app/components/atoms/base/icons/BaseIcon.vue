@@ -13,7 +13,7 @@ import { Icons } from './icons';
 
 const CLASS_NAME = `${APP_PREFIX}-icon`;
 
-export interface Props {
+interface Props {
     name?: Icons,
     color?: Colors,
     show?: boolean

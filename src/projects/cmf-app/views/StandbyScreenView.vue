@@ -33,6 +33,8 @@ import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { APP_PREFIX } from '@app/config';
 import g from 'gsap';
 
+import { absoluteUrls } from '@app/router/urls';
+import { useRouter } from 'vue-router';
 import { flattenMatrix } from '@/utils/matrix';
 
 import UIBasePage from '@app/components/atoms/base/pages/BasePage.vue';
@@ -55,13 +57,15 @@ interface Slot {
     name: string;
     disabled?: boolean;
     type: ButtonTypes;
+    url?: string;
 }
 
 const slots = ref<Slot[][]>([
     [
         {
             id: 0, name: 'Manual',
-            type: ButtonTypes.SECTION
+            type: ButtonTypes.SECTION,
+            url: absoluteUrls.MANUAL_MODE
         },
         {
             id: 1, name: 'Auto',
@@ -112,6 +116,8 @@ const slots = ref<Slot[][]>([
     ]
 ]);
 
+const router = useRouter();
+
 const slotSid = ref(0);
 const slotsLength = computed(() => flattenMatrix(slots.value).length);
 const screenSid = computed(() => slotSid.value > 5 ? 1 : 0);
@@ -151,7 +157,19 @@ const knobTurnRightHandler = (): void => {
 
 /* * * Buttons * * */
 
-const onButtonPress = (slot: Slot): void => { slotSid.value = slot.id };
+const onButtonPress = (slot: Slot): void => {
+    slotSid.value = slot.id
+
+    const flatten = flattenMatrix(slots.value);
+    const id = slot.id ?? 0;
+
+    console.log(flatten[id].url)
+
+    if (flatten[id].url) {
+        router.push({ path: absoluteUrls.MANUAL_MODE });
+    };
+};
+
 const onUpdateScreenSid = (): void => { };
 
 /* * * Animations * * */

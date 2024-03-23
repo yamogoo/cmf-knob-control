@@ -5,7 +5,7 @@ div(
 )
     RouterView
 </template>
-    
+
 <script setup lang="ts">
 import { APP_PREFIX } from '@app/config';
 import { computed, watch } from 'vue';
@@ -25,7 +25,7 @@ watch(isConnected, () => {
     if (!isConnected.value) router.push({ path: absoluteUrls.SPLASH });
 }, { immediate: true });
 </script>
-    
+
 <style lang="scss">
 ##{$APP_PREFIX} {
     @include box(100%);

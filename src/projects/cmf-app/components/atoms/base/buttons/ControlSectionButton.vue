@@ -14,7 +14,7 @@ import g from 'gsap';
 
 const CLASS_NAME = `${APP_PREFIX}-control-boxed-button`;
 
-export interface Props {
+interface Props {
     id: number,
     isKnobPressed: boolean,
     isFocused: boolean
@@ -31,7 +31,7 @@ const isPressed = ref(false);
 
 const onMouseDown = (e: MouseEvent): void => {
     e.preventDefault();
-    e.stopPropagation();
+    // e.stopPropagation();
 
     onPress(true);
 
@@ -53,7 +53,7 @@ const mouseMoveHandler = (_e: MouseEvent) => {
 
 const mouseUpHandler = (e: MouseEvent) => {
     e.preventDefault();
-    e.stopPropagation();
+    // e.stopPropagation();
 
     onPress(false);
 
@@ -62,7 +62,7 @@ const mouseUpHandler = (e: MouseEvent) => {
 
 const mouseOutHandler = (e: MouseEvent) => {
     e.preventDefault();
-    e.stopPropagation();
+    // e.stopPropagation();
 
     onPress(false);
 
