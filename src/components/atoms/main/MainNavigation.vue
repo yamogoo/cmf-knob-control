@@ -5,10 +5,9 @@ nav(
 </template>
 
 <script setup lang="ts">
-import { MAIN_APP_PREFIX } from '@/config';
-
+import { MAIN_APP_PREFIX } from '@/config'
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
 .#{$MAIN_APP_PREFIX}-navigation {}
-</style>
+</style> -->
