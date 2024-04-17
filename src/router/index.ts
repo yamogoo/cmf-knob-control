@@ -6,7 +6,7 @@ const routes = [
     alias: '/',
     path: `${CMF_PREFIX}:pathMatch(.*)*`,
     name: 'Home',
-    component: () => import('../views/HomeView.vue')
+    component: () => import('../pages/HomePage.vue')
   }
 ]
 

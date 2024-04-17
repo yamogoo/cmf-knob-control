@@ -8,9 +8,7 @@ SplashScreenLogo(
 import { onUnmounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { absoluteUrls } from '@app/router/urls'
-
 import { cancelableTimer } from '@utils/timer'
-
 import SplashScreenLogo from '@app/components/atoms/logos/SplashScreenLogo.vue'
 
 const router = useRouter()

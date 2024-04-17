@@ -20,33 +20,33 @@ div(:class="[`${PROTO_APP_PREFIX}-hmi`]")
 </template>
 
 <script setup lang="ts">
-import { PROTO_APP_PREFIX } from '@proto/config';
+import { PROTO_APP_PREFIX } from '@proto/config'
 
-import ProtoHousing from './ProtoHousing.vue';
-import ProtoFrontPanel from './ProtoFrontPanel.vue';
-import ProtoDisplay from './ProtoDisplay.vue';
-import ProtoScreen from './ProtoScreen.vue';
+import ProtoHousing from './ProtoHousing.vue'
+import ProtoFrontPanel from './ProtoFrontPanel.vue'
+import ProtoDisplay from './ProtoDisplay.vue'
+import ProtoScreen from './ProtoScreen.vue'
 
 export interface Props {
-    visualType?: ProtoVisualTypes,
-    showKnob?: boolean
+  visualType?: ProtoVisualTypes
+  showKnob?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
-    visualType: ProtoVisualTypes.HOUSING,
-    showKnob: true
-});
-
+  visualType: ProtoVisualTypes.HOUSING,
+  showKnob: true
+})
 </script>
 <script lang="ts">
 export enum ProtoVisualTypes {
-    HOUSING = 'housing',
-    FRONT_PANEL = 'panel',
-    DISPLAY = 'display',
-    SCREEN = 'screen'
+  HOUSING = 'housing',
+  FRONT_PANEL = 'panel',
+  DISPLAY = 'display',
+  SCREEN = 'screen'
 }
 </script>
 
 <style lang="scss">
-.#{$PROTO_APP_PREFIX}-hmi {}
+.#{$PROTO_APP_PREFIX}-hmi {
+}
 </style>

@@ -15,26 +15,26 @@ svg(
 </template>
 
 <script setup lang="ts">
-import { APP_PREFIX } from '@app/config';
+import { APP_PREFIX } from '@app/config'
 
-const CLASS_NAME = `${APP_PREFIX}-wifi-disconnected-icon`;
+const CLASS_NAME = `${APP_PREFIX}-wifi-disconnected-icon`
 
 export interface Props {
-    show?: boolean
-};
+  show?: boolean
+}
 
 withDefaults(defineProps<Props>(), {
-    show: true
-});
+  show: true
+})
 </script>
 
 <style lang="scss">
 .#{$APP_PREFIX}-wifi-disconnected-icon {
-    fill: darken($GRAY, 12%);
-    @include box(100%);
+  fill: darken($GRAY, 12%);
+  @include box(100%);
 
-    path {
-        fill: inherit;
-    }
+  path {
+    fill: inherit;
+  }
 }
 </style>

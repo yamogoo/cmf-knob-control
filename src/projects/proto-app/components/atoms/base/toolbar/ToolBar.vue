@@ -10,12 +10,13 @@ import { PROTO_APP_PREFIX } from '@proto/config'
 
 <style lang="scss">
 $toolbar: (
-    xs: (),
-    sm: (),
-    md: (),
-    lg: (),
-    xl: ()
+  xs: (),
+  sm: (),
+  md: (),
+  lg: (),
+  xl: ()
 );
 
-.#{PROTO_APP_PREFIX}-toolbar {}
+.#{PROTO_APP_PREFIX}-toolbar {
+}
 </style>

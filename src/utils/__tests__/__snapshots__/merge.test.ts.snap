@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Deep merge 1`] = `
+{
+  "a": "a",
+  "b": {
+    "a": "a",
+    "b": "b",
+    "c": "c",
+  },
+}
+`;

@@ -6,9 +6,10 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // define: { processEnvValues },
   server: {
-    port: 5000,
-    proxy: { '/api': 'http://localhost:3002' }
+    port: 5001
+    // proxy: { '/api': 'http://localhost:5002' }
   },
   build: {
     outDir: 'build'
@@ -28,8 +29,8 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         additionalData: `
-          @import './src/assets/styles/common.scss';
-        `
+            @import './src/assets/styles/common.scss';
+          `
       }
     }
   }

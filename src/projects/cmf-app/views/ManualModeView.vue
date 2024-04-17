@@ -26,7 +26,7 @@ import BaseSwitch from '@app/components/atoms/base/controls/BaseSwitch.vue'
 interface Item {
   id: number
   name: string
-  style?: any // !FIX
+  style?: any
 }
 
 // !TEMP
@@ -71,7 +71,3 @@ const onLeave = (el: Element, done: () => void): void => {
   })
 }
 </script>
-
-<!-- <style lang="scss">
-##{$APP_PREFIX}-manual-mode {}
-</style> -->

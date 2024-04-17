@@ -22,17 +22,6 @@
       "@app/*": ["./src/projects/cmf-app/*"],
       "@proto/*": ["./src/projects/proto-app/*"]
     }
-
-    // "target": "esnext",
-    // "module": "esnext",
-    // "strict": true,
-    // "jsx": "preserve",
-    // "moduleResolution": "node",
-    // "esModuleInterop": true,
-    // "lib": ["ESNext", "DOM"],
-    // "resolveJsonModule": true,
-    // "isolatedModules": true,
-    // "allowSyntheticDefaultImports": true
   },
   "vueCompilerOptions": {
     "plugins": ["@vue/language-plugin-pug"]

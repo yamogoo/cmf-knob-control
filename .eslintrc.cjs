@@ -7,8 +7,7 @@ module.exports = {
     'plugin:vue/vue3-essential',
     'eslint:recommended',
     '@vue/eslint-config-typescript',
-    '@vue/eslint-config-prettier/skip-formatting',
-    'plugin:storybook/recommended'
+    '@vue/eslint-config-prettier/skip-formatting'
   ],
   overrides: [
     {
@@ -23,6 +22,6 @@ module.exports = {
     // Add or modify rules as needed
     // For example, to suppress the eslint@typescript-eslint/no-unused-vars error
     // 'no-unused-vars': 'off',
-    // '@typescript-eslint/no-unused-vars': 'off'
+    '@typescript-eslint/no-unused-vars': 'off'
   }
 }

@@ -9,17 +9,28 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch-build": "tsc -w",
     "start": "node ./build/main.js",
-    "dev": "npm run watch-build && npm run start"
+    "dev": "export NODE_OPTIONS='--trace-deprecation --abort-on-uncaught-exception' && export NODE_ENV=development && nodemon --exec ts-node ./src/main.ts",
+    "dev2": "npm run watch-build && npm run start"
   },
   "dependencies": {
     "@types/tough-cookie": "^4.0.5",
-    "express": "^4.19.1"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.1",
+    "log4js": "^6.9.1",
+    "module-alias": "^2.2.3"
   },
   "devDependencies": {
+    "@tsconfig/recommended": "^1.0.6",
     "@types/express": "^4.17.21",
-    "@types/node": "^20.11.30",
+    "@types/node": "^20.12.7",
     "cors": "^2.8.5",
+    "nodemon": "^3.1.0",
     "remult": "^0.25.7",
-    "socket.io": "^4.7.5"
+    "socket.io": "^4.7.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "_moduleAliases": {
+    "@": "./src"
   }
 }

@@ -10,25 +10,24 @@ BaseOptionPicker(
 
 <script setup lang="ts">
 import { PROTO_APP_PREFIX } from '@proto/config'
-import BaseOptionPicker, { type Option } from './BaseOptionPicker.vue';
+import BaseOptionPicker, { type Option } from './BaseOptionPicker.vue'
 
 // export interface Props extends /* @vue-ignore */ BaseProps { }
 
 export interface Props {
-    options: Option[] | [],
-    initValue: Option
+  options: Option[] | []
+  initValue: Option
 }
 
-withDefaults(defineProps<Props>(), {});
+withDefaults(defineProps<Props>(), {})
 
 const emit = defineEmits<{
-    (e: 'onUpdateOption', id: number): void
-}>();
+  (e: 'onUpdateOption', id: number): void
+}>()
 
 const onUpdateOption = (id: number): void => {
-    emit('onUpdateOption', id);
-};
-
+  emit('onUpdateOption', id)
+}
 </script>
 
 <script lang="ts">
@@ -37,16 +36,17 @@ const onUpdateOption = (id: number): void => {
 
 <style lang="scss">
 $navbar: (
-    xs: (),
-    sm: (),
-    md: (),
-    lg: (),
-    xl: ()
+  xs: (),
+  sm: (),
+  md: (),
+  lg: (),
+  xl: ()
 );
 
 .#{PROTO_APP_PREFIX}-option-picker {
-    @include box(auto, max-content);
+  @include box(auto, max-content);
 
-    &__item {}
+  &__item {
+  }
 }
 </style>

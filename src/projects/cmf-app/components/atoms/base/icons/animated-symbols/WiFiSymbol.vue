@@ -21,32 +21,30 @@ svg(viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg")
 </template>
 
 <script setup lang="ts">
-import { APP_PREFIX } from '@app/config';
+import { APP_PREFIX } from '@app/config'
 
-const CLASS_NAME = `${APP_PREFIX}-wifi-icon`;
+const CLASS_NAME = `${APP_PREFIX}-wifi-icon`
 
 export interface Props {
-    level: number
-};
+  level: number
+}
 
 withDefaults(defineProps<Props>(), {
-    level: 1
-});
+  level: 1
+})
 </script>
 
 <style lang="scss">
 .#{$APP_PREFIX}-wifi-icon {
-
-    &__level,
-    &__circle {
-
-        &.active {
-            fill: $CARDAMON_LIGHT;
-        }
-
-        &.normal {
-            fill: darken($GRAY, 20%);
-        }
+  &__level,
+  &__circle {
+    &.active {
+      fill: $CARDAMON_LIGHT;
     }
+
+    &.normal {
+      fill: darken($GRAY, 20%);
+    }
+  }
 }
 </style>

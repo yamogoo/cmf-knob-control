@@ -1,7 +1,9 @@
 import { io } from 'socket.io-client'
 import type { App } from 'vue'
 
-const socket = io('http://localhost:3000', {
+const PORT = import.meta.env.VITE_SOCKET_PORT
+
+const socket = io(`http://localhost:${PORT}`, {
   secure: false,
   transports: ['websocket', 'polling']
 })
