@@ -1,10 +1,11 @@
 <template lang="pug">
 div(
-    ref="refRoot"
-    :class="[CLASS_NAME, {'focused': isFocused}, isPressed ? Statuses.PRESSED : Statuses.RELEASED]"
-    @mousedown="onMouseDown"
+  ref="refRoot"
+  :class="[CLASS_NAME, {'focused': isFocused}, isPressed ? Statuses.PRESSED : Statuses.RELEASED]"
+  data-test-id="control-section-button"
+  @mousedown="onMouseDown"
 )
-    slot
+  slot
 </template>
 
 <script setup lang="ts">

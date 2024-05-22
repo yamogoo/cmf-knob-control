@@ -1,15 +1,14 @@
 <template lang="pug">
 div(
-    :id="`${MAIN_APP_PREFIX}-main-toolbar`"
-    :class="[`${MAIN_APP_PREFIX}-main-toolbar`]"
+  :id="`${MAIN_APP_PREFIX}-main-toolbar`"
+  :class="[`${MAIN_APP_PREFIX}-main-toolbar`]"
 )
-    div(
-        :class="[`${MAIN_APP_PREFIX}-main-toolbar__container`]"
-    )
+  div(
+    :class="[`${MAIN_APP_PREFIX}-main-toolbar__container`]"
+  )
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
 import { MAIN_APP_PREFIX } from '@/config'
 
 // export interface Props {

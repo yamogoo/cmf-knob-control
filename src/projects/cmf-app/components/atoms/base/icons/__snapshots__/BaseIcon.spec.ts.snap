@@ -1,0 +1,55 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BaseIcon > should render AttentionSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render AutoSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render BackSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render CameraFillSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render CameraSymbol1 icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render CrossSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render DeleteSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render HeartSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render HeartSymbol icon from "Icons" data set 2`] = `true`;
+
+exports[`BaseIcon > should render HomeSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render InfoSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render LikeSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render ManualSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render PauseSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render PhotoSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render ProgramsSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render ProgramsSymbol icon from "Icons" data set 2`] = `true`;
+
+exports[`BaseIcon > should render RecentsSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render SearchSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render SettingsSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render StartSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render StopSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render ThemeDarkSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render ThemeLightSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render WarningSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render WiFiDisconnectedSymbol icon from "Icons" data set 1`] = `true`;
+
+exports[`BaseIcon > should render WiFiSymbol icon from "Icons" data set 1`] = `true`;

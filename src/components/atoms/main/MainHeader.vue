@@ -1,8 +1,10 @@
 <template lang="pug">
 header(
-    :class="[`${MAIN_APP_PREFIX}-main-header`]"
+  :class="[`${MAIN_APP_PREFIX}-main-header`]"
 )
-    MainNavigation
+  MainNavigation(
+    data-test-id="main-navigation"
+  )
 </template>
 
 <script setup lang="ts">

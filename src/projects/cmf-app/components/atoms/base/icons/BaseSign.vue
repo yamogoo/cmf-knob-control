@@ -1,15 +1,17 @@
 <template lang="pug">
-div(:class="[CLASS_NAME, `${CLASS_NAME}--${size}`]")
-    BaseIcon(
-        :name="name"
-    )
+div(
+  :class="[CLASS_NAME,`${CLASS_NAME}--${size}`]"
+  data-test-id="base-sign"
+)
+  BaseIcon(
+    :name="name"
+    data-test-id="base-icon"
+  )
 </template>
 
 <script setup lang="ts">
 import { APP_PREFIX } from '@app/config'
 import BaseIcon, { Icons } from './BaseIcon.vue'
-
-const CLASS_NAME = `${APP_PREFIX}-sign`
 
 interface Props {
   name: Icons
@@ -29,6 +31,8 @@ export enum Sizes {
   MD = 'md',
   LG = 'lg'
 }
+
+export const CLASS_NAME = `${APP_PREFIX}-sign`
 </script>
 
 <style lang="scss">

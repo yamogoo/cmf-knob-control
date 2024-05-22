@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BasePagination > should render min: 0, max: 3, step: %i 1`] = `3`;
+
+exports[`BasePagination > should render min: 0, max: 6, step: %i 1`] = `6`;
+
+exports[`BasePagination > should render min: 0, max: 9, step: %i 1`] = `9`;
+
+exports[`BasePagination > should render slot content (<p id="test">Slot content</p>) 1`] = `
+"<div data-test-id="pagination-indicator" id="0" class="cmf-app-pagination-item">
+  <p id="test">Slot content</p>
+</div>"
+`;

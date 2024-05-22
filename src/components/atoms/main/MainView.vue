@@ -1,8 +1,8 @@
 <template lang="pug">
 main(
-    :class="[`${MAIN_APP_PREFIX}-main-view`]"
+  :class="[`${MAIN_APP_PREFIX}-main-view`]"
 )
-    slot
+  slot
 </template>
 
 <script setup lang="ts">

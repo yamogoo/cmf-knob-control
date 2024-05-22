@@ -1,8 +1,8 @@
 <template lang="pug">
 component(
-    :is="component"
-    v-if="show && name"
-    :class="[CLASS_NAME, `${CLASS_NAME}--${color}`]"
+  v-if="show && name"
+  :is="component"
+  :class="[CLASS_NAME, `${CLASS_NAME}--${color}`]"
 )
 </template>
 

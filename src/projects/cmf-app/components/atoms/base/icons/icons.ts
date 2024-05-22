@@ -3,7 +3,7 @@ export enum Icons {
   BACK = 'BackSymbol',
   HEART = 'HeartSymbol',
   INFO = 'InfoSymbol',
-  CAMERA = 'CameraSymbol',
+  CAMERA = 'CameraSymbol1',
   CAMERA_FILL = 'CameraFillSymbol',
   MANUAL = 'ManualSymbol',
   ASSISTED = 'ProgramsSymbol',
@@ -22,8 +22,8 @@ export enum Icons {
   PAUSE = 'PauseSymbol',
   WARNING = 'WarningSymbol',
   ATTENTION = 'AttentionSymbol',
-  WIFI = 'WifiSymbol',
-  WIFI_FAILED = 'WiFiFailedSymbol',
+  WIFI = 'WiFiSymbol',
+  WIFI_FAILED = 'WiFiDisconnectedSymbol',
   THEME_DARK = 'ThemeDarkSymbol',
   THEME_LIGHT = 'ThemeLightSymbol'
 }

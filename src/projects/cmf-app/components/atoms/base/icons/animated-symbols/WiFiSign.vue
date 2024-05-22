@@ -1,23 +1,24 @@
 <template lang="pug">
 div(:class="[`${CLASS_NAME}`]")
-    WiFiSymbolVue(
-        v-if="isConnected"
-        :level="level"
-    )
-    WiFiDisconnectedSymbol(
-        v-if="!isConnected"
-    )
+  WiFiSymbolVue(
+    v-if="isConnected"
+    :level="level"
+  )
+  WiFiDisconnectedSymbol(
+    v-if="!isConnected"
+  )
 </template>
 
 <script setup lang="ts">
 import { APP_PREFIX } from '@app/main'
+
 import WiFiSymbolVue from './WiFiSymbol.vue'
 import WiFiDisconnectedSymbol from '../animated-symbols/WiFiDisconnectedSymbol.vue'
 
 const CLASS_NAME = `${APP_PREFIX}-wifi-symbol`
 
 export interface Props {
-  level: number
+  level?: number
   isConnected?: boolean
 }
 

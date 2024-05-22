@@ -1,15 +1,15 @@
 <template lang="pug">
 lottie(
-    ref="refRoot"
-    :style="`width: ${100}%; height: ${100}%;`"
-    :animation-data="animationData"
-    :animation-link="animationLink"
-    :loop="loop"
-    :auto-play="autoplay"
-    :renderer-settings="settings.renderSettings"
-    @on-complete="onAnimCompleted"
-    @on-loop-complete="onAnimCompleted"
-    @on-animation-loaded="onAnimLoaded"
+  ref="refRoot"
+  :style="`width: ${100}%; height: ${100}%;`"
+  :animation-data="animationData"
+  :animation-link="animationLink"
+  :loop="loop"
+  :auto-play="autoplay"
+  :renderer-settings="settings.renderSettings"
+  @on-complete="onAnimCompleted"
+  @on-loop-complete="onAnimCompleted"
+  @on-animation-loaded="onAnimLoaded"
 )
 </template>
 
