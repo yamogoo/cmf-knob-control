@@ -1,31 +1,31 @@
 <template lang="pug">
 Transition(
-    :css="false"
-    @enter="onPageEnter"
+  :css="false"
+  @enter="onPageEnter"
 )
-    UIBasePage(
-        :id="[`${APP_PREFIX}-standby-page`]"
+  UIBasePage(
+    :id="[`${APP_PREFIX}-standby-page`]"
+  )
+    StatusPanel
+      template(#action)
+        MiniClock
+    CarouselStack(
+      v-slot="screen"
+      :sid="screenSid"
+      :items="slots.length"
+      :gap="40"
+      @update:sid="onUpdateScreenSid"
     )
-        StatusPanel
-            template(#action)
-                MiniClock
-        CarouselStack(
-            v-slot="screen"
-            :sid="screenSid"
-            :items="slots.length"
-            :gap="40"
-            @on-update-sid="onUpdateScreenSid"
-        )
-            div(:class="[`${APP_PREFIX}-grid-stack`]")
-                ControlSectionButton(
-                    v-for="slot, idx in slots[screen.id]"
-                    :id="slot.id"
-                    :key="idx"
-                    :is-focused="slot.id === slotSid"
-                    :is-knob-pressed="slot.id === slotSid && isKnobPressed"
-                    @on-press="onButtonPress(slot)"
-                )
-                    span Item {{ String('0' + slot.id).slice(-2) }}
+        div(:class="[`${APP_PREFIX}-grid-stack`]")
+          ControlSectionButton(
+            v-for="slot, idx in slots[screen.id]"
+            :id="slot.id"
+            :key="idx"
+            :is-focused="slot.id === slotSid"
+            :is-knob-pressed="slot.id === slotSid && isKnobPressed"
+            @on-press="onButtonPress(slot)"
+          )
+            span Item {{ String('0' + slot.id).slice(-2) }}
 </template>
 
 <script setup lang="ts">

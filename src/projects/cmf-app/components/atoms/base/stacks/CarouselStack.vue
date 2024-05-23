@@ -1,39 +1,41 @@
 <template lang="pug">
 div(
-    ref="refRoot"
-    :class="[`${APP_PREFIX}-carousel-stack`]"
-    @mousedown="onMouseDownHandler"
+  ref="refRoot"
+  :class="[`${APP_PREFIX}-carousel-stack`]"
+  @mousedown="onMouseDownHandler"
 )
+  div(
+    ref="refTrack"
+    :class="[`${APP_PREFIX}-carousel-stack__track`]"
+    :style="[`gap: ${gap}px;`]"
+  )
     div(
-        ref="refTrack"
-        :class="[`${APP_PREFIX}-carousel-stack__track`]"
-        :style="[`gap: ${gap}px;`]"
+      v-for="item, idx in items"
+      data-test-id="carousel-stack__item"
+      :id="String(idx)"
+      :key="idx"
+      ref="refItem"
+      :class="[`${APP_PREFIX}-carousel-stack__item`]"
     )
-        div(
-            v-for="item, idx in items"
-            :id="String(idx)"
-            :key="idx"
-            ref="refItem"
-            :class="[`${APP_PREFIX}-carousel-stack__item`]"
-        )
-            slot(
-                :id="Number(idx)"
-                :item="item"
-            )
-            slot(
-                :id="Number(idx)"
-                :name="`slide_${idx}`"
-                :item="item"
-            )
-    div(
-        v-if="showPagination"
-        :class="[`${APP_PREFIX}-carousel-stack__footer`]"
+      slot(
+        :id="Number(idx)"
+        :item="item"
+      )
+      slot(
+        :id="Number(idx)"
+        :name="`slide_${idx}`"
+        :item="item"
+      )
+  div(
+    v-if="showPagination"
+    :class="[`${APP_PREFIX}-carousel-stack__footer`]"
+  )
+    MainPagination(
+      v-if="itemsLength > 1"
+      data-test-id="MainPagination"
+      :items-count="itemsLength"
+      :sid="itemSid"
     )
-        MainPagination(
-            v-if="itemsLength > 1"
-            :items-count="itemsLength"
-            :sid="itemSid"
-        )
 </template>
 
 <script setup lang="ts">
@@ -42,8 +44,6 @@ import { APP_PREFIX } from '@app/config'
 import g from 'gsap'
 
 import type { Point } from '@/typings/controls'
-
-// import { AppEvents } from '@/App.vue';
 
 import MainPagination from '@app/components/atoms/base/paginations/MainPagination.vue'
 
@@ -77,8 +77,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'getRef', el: HTMLDivElement): void
-  (e: 'onUpdateSid', id: number): void
+  (e: 'update:sid', id: number): void
   (e: 'onUnmountAnimationCompleted'): void
 }>()
 
@@ -94,20 +93,17 @@ provide(RefRootInjectionKey, refRoot)
 
 const itemsLength = typeof props.items === 'number' ? props.items : props.items.length
 
-onMounted(async () => {
-  if (refRoot.value) {
-    emit('getRef', refRoot.value)
-    // document.addEventListener(AppEvents.RESIZE, handleAppResize, { passive: true });
-  }
+defineExpose({
+  refRoot
+})
 
+onMounted(async () => {
   updateWidth()
   onEnter()
   changeSlide(props.initAnimDuration)
 })
 
 onUnmounted(() => {
-  // document.removeEventListener(AppEvents.RESIZE, handleAppResize);
-
   if (refRoot.value) {
     if (!props.isScrollOnWindowArea) {
       document.removeEventListener('mousemove', mouseMoveHandler)
@@ -118,8 +114,6 @@ onUnmounted(() => {
   document.removeEventListener('mouseup', mouseUpHandler)
   document.removeEventListener('mouseout', mouseOutHandler)
 })
-
-// const handleAppResize = () => updateWidth();
 
 const updateWidth = (): void => {
   if (refRoot.value) {
@@ -261,7 +255,7 @@ const onMoveEnd = (): void => {
     }
 
     changeSlide(0.35).then(() => {
-      emit('onUpdateSid', itemSid.value)
+      emit('update:sid', itemSid.value)
     })
   }
 }
