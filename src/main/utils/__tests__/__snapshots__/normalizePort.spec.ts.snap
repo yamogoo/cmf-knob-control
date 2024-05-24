@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`normalizePort > (0000) should be of type "number" 1`] = `true`;
+
+exports[`normalizePort > (1qdwq23) should be of type "number" 1`] = `true`;
+
+exports[`normalizePort > (9013) should be of type "number" 1`] = `true`;

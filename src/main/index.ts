@@ -3,17 +3,15 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png'
 
-import { config } from 'dotenv'
-config()
-
-// import { config } from '../consfig/server.config'
-
 import { logger } from './utils/logger'
 import { ControlBoard } from './controlBoard'
 
+import { config } from 'dotenv'
+config()
+
 logger.logInfo('Starting the app')
 
-const controlBoard = new ControlBoard()
+const controlBoard = new ControlBoard({ logger })
 
 let mainWindow: BrowserWindow
 
@@ -70,11 +68,10 @@ const getConfig = (): void => {
   const locale = app.getLocale()
   const systemLocale = app.getSystemLocale()
   const preferedLanguages = app.getPreferredSystemLanguages()
-  const gpuStatus = app.getGPUFeatureStatus()
 
   logger.logInfo('config', {
     hardware: { size, touchSupport },
-    app: { version, name, locale, systemLocale, preferedLanguages, gpuStatus }
+    app: { version, name, locale, systemLocale, preferedLanguages }
   })
 
   // Login on start
@@ -83,7 +80,10 @@ const getConfig = (): void => {
 }
 
 app.whenReady().then(() => {
+  // Get Config (Device and App)
   getConfig()
+
+  // Starting Control Board
   controlBoard.start()
 
   // Set app user model id for windows
