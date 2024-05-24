@@ -1,0 +1,32 @@
+{
+  // "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
+  "include": [
+    "env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "styles.d.ts"
+  ],
+  "exclude": ["src/**/__tests__/*"],
+
+  "compilerOptions": {
+    "types": ["vitest/globals"],
+    "composite": true,
+    // "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "~@/*": ["./src/renderer/src/*"],
+      "@utils/*": ["./src/renderer/src/utils/*"],
+      "@typings/*": ["./src/renderer/src/typings/*"],
+      "@app/*": ["./src/renderer/src/projects/cmf-app/*"],
+      "@proto/*": ["./src/renderer/src/projects/proto-app/*"]
+    }
+  },
+  "vueCompilerOptions": {
+    "plugins": ["@vue/language-plugin-pug"]
+  }
+}

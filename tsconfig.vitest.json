@@ -1,5 +1,5 @@
 {
-  "extends": "./tsconfig.app.json",
+  "extends": "./tsconfig.web.json",
   "exclude": [],
   "compilerOptions": {
     "composite": true,

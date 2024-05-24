@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SplashScreenLogo > should render lottie icon DOM element 1`] = `true`;
