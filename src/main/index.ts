@@ -1,19 +1,25 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, screen } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png'
 
-import { createServer } from '../server/main'
-// import { menuTemplate } from './menu'
+import { config } from 'dotenv'
+config()
 
-const server = createServer({
-  host: 'localhost',
-  port: 5012
-})
+// import { config } from '../consfig/server.config'
+
+import { logger } from './utils/logger'
+import { ControlBoard } from './controlBoard'
+
+logger.logInfo('Starting the app')
+
+const controlBoard = new ControlBoard()
+
+let mainWindow: BrowserWindow
 
 function createWindow(): void {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 1280,
     height: 1024,
     show: false,
@@ -51,10 +57,34 @@ function createWindow(): void {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.whenReady().then(() => {
-  // Create server
 
-  server.init()
+const getConfig = (): void => {
+  const primaryDisplay = screen.getPrimaryDisplay()
+  const { size, touchSupport } = primaryDisplay
+
+  const version = app.getVersion()
+
+  // Overwrite app name:
+  app.setName('CMF: Home Control')
+  const name = app.getName()
+  const locale = app.getLocale()
+  const systemLocale = app.getSystemLocale()
+  const preferedLanguages = app.getPreferredSystemLanguages()
+  const gpuStatus = app.getGPUFeatureStatus()
+
+  logger.logInfo('config', {
+    hardware: { size, touchSupport },
+    app: { version, name, locale, systemLocale, preferedLanguages, gpuStatus }
+  })
+
+  // Login on start
+  // const loginSettings: app.getLoginItemSettings()
+  // app.setLoginItemSettings({ openAtLogin: true })
+}
+
+app.whenReady().then(() => {
+  getConfig()
+  controlBoard.start()
 
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
@@ -70,6 +100,11 @@ app.whenReady().then(() => {
   ipcMain.on('ping', () => console.log('pong'))
 
   createWindow()
+
+  // show about panel:
+  // setTimeout(() => {
+  //   app.showAboutPanel()
+  // }, 1000)
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the

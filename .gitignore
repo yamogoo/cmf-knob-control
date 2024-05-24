@@ -29,6 +29,7 @@ coverage
 
 *.tsbuildinfo
 
+/log
 /build
 /out
 /control-board
