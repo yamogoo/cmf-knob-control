@@ -13,22 +13,31 @@ interface ControlBoardOptions {
 export class ControlBoard extends EventEmitter {
   baudRate: number
   serial: SerialPort | null = null
-  parser: DelimiterParser
-  logger: Logger
+  serialParser: DelimiterParser
+  deviceVidPidList: string | undefined
 
-  constructor(opts: ControlBoardOptions) {
+  constructor(
+    private logger: Logger,
+    opts?: ControlBoardOptions
+  ) {
     super()
 
-    this.logger = opts.logger
+    this.logger = logger
 
-    this.baudRate = opts.baudRate ?? 115200
+    this.deviceVidPidList = process.env.VITE_CONTROL_BOARD_VIDPID_LIST
 
-    this.parser = new DelimiterParser({
+    this.baudRate = opts?.baudRate ?? 115200
+
+    this.serialParser = new DelimiterParser({
       delimiter: Buffer.from('\r\n'),
       includeDelimiter: true
     })
   }
 
+  /**
+   *
+   * Find serial port by VID:PID from env.list (VITE_CONTROL_BOARD_VIDPID_LIST)
+   */
   public async findPort(vpidList: Array<Array<string>>) {
     const portInfoList = await SerialPort.list()
 
@@ -46,12 +55,14 @@ export class ControlBoard extends EventEmitter {
     return undefined
   }
 
+  /**
+   *
+   * Serial port auto detection
+   */
   public async autodetectPort() {
-    const deviceIdList = process.env.VITE_CONTROL_BOARD_VPID_LIST
+    if (!this.deviceVidPidList) return undefined
 
-    if (!deviceIdList) return undefined
-
-    const vpidList = parseVPIdEnvArgs(deviceIdList)
+    const vpidList = parseVPIdEnvArgs(this.deviceVidPidList)
     this.logger.logInfo('SERIAL PORT: autodetecting...')
 
     const intervalId = setInterval(() => {
@@ -64,6 +75,10 @@ export class ControlBoard extends EventEmitter {
     }, 1000)
   }
 
+  /**
+   *
+   * Serial port updating path or options
+   */
   async updateSerialPort(path: string, baudRate = this.baudRate) {
     try {
       this.serial = new SerialPort({ path, baudRate, autoOpen: true }, (error) => {
@@ -77,18 +92,30 @@ export class ControlBoard extends EventEmitter {
     }
   }
 
+  /**
+   *
+   * Reading serial port data
+   */
   public read(): void {
     if (this.serial) {
-      this.serial.pipe(this.parser)
-      this.parser.on('data', this.parse)
+      this.serial.pipe(this.serialParser)
+      this.serialParser.on('data', this.parse)
     }
   }
 
+  /**
+   *
+   * Parsing serial port data by ATParser
+   */
   public parse(data: Buffer) {
     console.log(data.toString('utf-8').trim())
   }
 
-  public async start() {
+  /**
+   *
+   * Starting control board
+   */
+  public start() {
     this.autodetectPort()
 
     this.on('port-updated', (path) => {
@@ -97,9 +124,13 @@ export class ControlBoard extends EventEmitter {
       this.read()
 
       this.serial?.on('close', () => {
-        this.parser.off('data', this.parse)
+        this.serialParser.off('data', this.parse)
         this.autodetectPort()
       })
     })
   }
+}
+
+export const defineControlBoard = (logger: Logger, opts?: ControlBoardOptions) => {
+  return new ControlBoard(logger, opts)
 }

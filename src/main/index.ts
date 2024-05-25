@@ -1,28 +1,31 @@
-import { app, shell, BrowserWindow, ipcMain, screen } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, screen, Menu, nativeImage } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-import icon from '../../resources/icon.png'
+// import icon from '../../resources/icon.png'
 
-import { logger } from './utils/logger'
-import { ControlBoard } from './controlBoard'
+import { defineLogger } from './utils/logger'
+import { defineControlBoard } from './controlBoard'
+
+import { MenuHelper } from './menuHelper'
 
 import { config } from 'dotenv'
 config()
 
-logger.logInfo('Starting the app')
+const logger = defineLogger(app.name)
 
-const controlBoard = new ControlBoard({ logger })
+const controlBoard = defineControlBoard(logger)
 
 let mainWindow: BrowserWindow
 
 function createWindow(): void {
+  const appIcon = nativeImage.createFromPath('../../resources/icon.png')
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 1024,
     show: false,
     autoHideMenuBar: true,
-    ...(process.platform === 'linux' ? { icon } : {}),
+    ...(process.platform === 'linux' ? { icon: appIcon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.mjs'),
       sandbox: false
@@ -101,10 +104,9 @@ app.whenReady().then(() => {
 
   createWindow()
 
-  // show about panel:
-  // setTimeout(() => {
-  //   app.showAboutPanel()
-  // }, 1000)
+  // Menu
+  const menuHelper = new MenuHelper(mainWindow)
+  Menu.setApplicationMenu(menuHelper.mainMenu)
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the

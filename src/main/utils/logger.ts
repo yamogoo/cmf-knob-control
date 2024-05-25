@@ -2,8 +2,6 @@
 import winston, { format } from 'winston'
 import DailyRotateFile from 'winston-daily-rotate-file'
 
-import { app } from 'electron'
-
 export type LogMessage = string
 export type LogContext = object
 
@@ -98,4 +96,4 @@ export class Logger {
   }
 }
 
-export const logger = new Logger(app.name)
+export const defineLogger = (name: string) => new Logger(name)

@@ -20,7 +20,7 @@
 
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "types": ["node", "electron-vite/node"],
+    "types": ["electron-vite/node"],
 
     "baseUrl": ".",
     "paths": {

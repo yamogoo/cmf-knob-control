@@ -1,63 +1,11 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`MiniClock > should render current time (02:17) 1`] = `"02:17"`;
+exports[`MiniClock > should render current time (10:13) 1`] = `"10:13"`;
 
-exports[`MiniClock > should render current time (14:06) 1`] = `"14:06"`;
+exports[`MiniClock > should render current time (10:14) 1`] = `"10:14"`;
 
-exports[`MiniClock > should render current time (21:25) 1`] = `"21:25"`;
+exports[`MiniClock > should render current time (10:15) 1`] = `"10:15"`;
 
-exports[`MiniClock > should render current time (21:28) 1`] = `"21:28"`;
+exports[`MiniClock > should render current time (10:36) 1`] = `"10:36"`;
 
-exports[`MiniClock > should render current time (21:29) 1`] = `"21:29"`;
-
-exports[`MiniClock > should render current time (21:34) 1`] = `"21:34"`;
-
-exports[`MiniClock > should render current time (21:37) 1`] = `"21:37"`;
-
-exports[`MiniClock > should render current time (21:38) 1`] = `"21:38"`;
-
-exports[`MiniClock > should render current time (21:39) 1`] = `"21:39"`;
-
-exports[`MiniClock > should render current time (21:41) 1`] = `"21:41"`;
-
-exports[`MiniClock > should render current time (21:42) 1`] = `"21:42"`;
-
-exports[`MiniClock > should render current time (21:45) 1`] = `"21:45"`;
-
-exports[`MiniClock > should render current time (21:46) 1`] = `"21:46"`;
-
-exports[`MiniClock > should render current time (21:47) 1`] = `"21:47"`;
-
-exports[`MiniClock > should render current time (21:48) 1`] = `"21:48"`;
-
-exports[`MiniClock > should render current time (21:53) 1`] = `"21:53"`;
-
-exports[`MiniClock > should render current time (21:54) 1`] = `"21:54"`;
-
-exports[`MiniClock > should render current time (21:55) 1`] = `"21:55"`;
-
-exports[`MiniClock > should render current time (21:58) 1`] = `"21:58"`;
-
-exports[`MiniClock > should render current time (22:05) 1`] = `"22:05"`;
-
-exports[`MiniClock > should render current time (22:06) 1`] = `"22:06"`;
-
-exports[`MiniClock > should render current time (22:07) 1`] = `"22:07"`;
-
-exports[`MiniClock > should render current time (22:08) 1`] = `"22:08"`;
-
-exports[`MiniClock > should render current time (22:09) 1`] = `"22:09"`;
-
-exports[`MiniClock > should render current time (22:10) 1`] = `"22:10"`;
-
-exports[`MiniClock > should render current time (22:16) 1`] = `"22:16"`;
-
-exports[`MiniClock > should render current time (22:19) 1`] = `"22:19"`;
-
-exports[`MiniClock > should render current time (22:20) 1`] = `"22:20"`;
-
-exports[`MiniClock > should render current time (22:21) 1`] = `"22:21"`;
-
-exports[`MiniClock > should render current time (22:22) 1`] = `"22:22"`;
-
-exports[`MiniClock > should render current time (22:23) 1`] = `"22:23"`;
+exports[`MiniClock > should render current time (10:38) 1`] = `"10:38"`;
