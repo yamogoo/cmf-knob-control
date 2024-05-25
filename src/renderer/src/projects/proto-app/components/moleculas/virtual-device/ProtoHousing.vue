@@ -1,15 +1,15 @@
 <template lang="pug">
 div(:class="[`${PROTO_APP_PREFIX}-housing`]")
-    ProtoDisplay
-        slot
-    ProtoKnob(
-        v-if="showKnob"
-        @on-update-data="onUpdateKnobData"
-        @on-turn-left="onKnobTurnLeft"
-        @on-turn-right="onKnobTurnRight"
-        @on-press="onKnobPress"
-        @on-release="onKnobRelease"
-    )
+  ProtoDisplay
+    slot
+  ProtoKnob(
+    v-if="showKnob"
+    @on-update-data="onUpdateKnobData"
+    @on-turn-left="onKnobTurnLeft"
+    @on-turn-right="onKnobTurnRight"
+    @on-press="onKnobPress"
+    @on-release="onKnobRelease"
+  )
 </template>
 
 <script setup lang="ts">

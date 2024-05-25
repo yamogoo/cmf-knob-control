@@ -1,13 +1,13 @@
 <template lang="pug">
 select(
-    v-model="selectedData"
-    :class="[`${PROTO_APP_PREFIX}-option-picker`]"
+  v-model="selectedData"
+  :class="[`${PROTO_APP_PREFIX}-option-picker`]"
 )
-    option(
-        v-for="option, idx in options"
-        :key="idx"
-    )
-        slot(:id="idx" :option="option")
+  option(
+    v-for="option, idx in options"
+    :key="idx"
+  )
+    slot(:id="idx" :option="option")
 </template>
 
 <script setup lang="ts">
@@ -21,15 +21,7 @@ export interface Props {
 
 const props = withDefaults(defineProps<Props>(), {})
 
-// const emit = defineEmits<{
-//     (e: 'onUpdateOption', id: number): void
-// }>();
-
 const selectedData = ref<Option | null>(props.initValue)
-
-// const onUpdateOption = (): void => {
-//     console.log('id')
-// };
 </script>
 
 <script lang="ts">

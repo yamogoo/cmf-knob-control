@@ -1,13 +1,13 @@
 <template lang="pug">
 Transition(
-    :css="false"
-    @enter="onEnter"
-    @leave="onLeave"
+  :css="false"
+  @enter="onEnter"
+  @leave="onLeave"
 )
-    div(
-        v-if="show"
-        :class="[`${PROTO_APP_PREFIX}-knob__led`]"    
-    )
+  div(
+    v-if="show"
+    :class="[`${PROTO_APP_PREFIX}-knob__led`]"    
+  )
 </template>
 
 <script setup lang="ts">

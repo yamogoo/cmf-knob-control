@@ -46,6 +46,8 @@ watch(
   () => props.isKnobPressed,
   () => {
     isPressed.value = props.isKnobPressed
+
+    if (!isPressed.value) emit('onPress', props.id)
     onAnimPress(isPressed.value)
   }
 )
@@ -56,7 +58,6 @@ const mouseUpHandler = (e: MouseEvent) => {
   e.preventDefault()
 
   onPress(false)
-
   emit('onPress', props.id)
 }
 

@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ProtoMainView > should render default slot (<p>Slot Content</p>) 1`] = `
+"<main class="proto-app-main-view">
+  <p>Slot Content</p>
+</main>"
+`;

@@ -1,43 +1,43 @@
 <template lang="pug">
 div(
-    ref="refRoot"
-    :class="[`${PROTO_APP_PREFIX}-knob`]"
-    :style="size"
-    @pointerdown="onRingCursorDown"
+  ref="refRoot"
+  :class="[`${PROTO_APP_PREFIX}-knob`]"
+  :style="size"
+  @pointerdown="onRingCursorDown"
 )
-    div(:class="[`${PROTO_APP_PREFIX}-knob-container`]")
-        div(:class="`${PROTO_APP_PREFIX}-knob__info`")
-            div(:class="`${PROTO_APP_PREFIX}-knob__info-container`")
-                span(
-                    v-if="showAngle"
-                    :class="`${PROTO_APP_PREFIX}-knob__button__descriptor`"
-                )
-        div(
-            :class="`${PROTO_APP_PREFIX}-knob__ring`"
-            :style="`transform: rotate(${angle}deg);`"
+  div(:class="[`${PROTO_APP_PREFIX}-knob-container`]")
+    div(:class="`${PROTO_APP_PREFIX}-knob__info`")
+      div(:class="`${PROTO_APP_PREFIX}-knob__info-container`")
+          span(
+            v-if="showAngle"
+            :class="`${PROTO_APP_PREFIX}-knob__button__descriptor`"
+          )
+    div(
+      :class="`${PROTO_APP_PREFIX}-knob__ring`"
+      :style="`transform: rotate(${angle}deg);`"
+    )
+      svg(:class="`${PROTO_APP_PREFIX}-knob__ring`" width="320" height="320" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg")
+        circle(cx="3" cy="3" r="2.75" transform="matrix(1 0 0 -1 157 25.406)" fill="black" stroke="black" stroke-width="0.5")
+    div(
+      ref="refButton"
+      :class="[`${PROTO_APP_PREFIX}-knob__button`, {'focused': isButtonFocused}]"
+      :style="`width: ${buttonSize}px; height: ${buttonSize}px;`"
+    )
+        Transition(
+          :css="false"
+          @enter="onButtonEnter"
+          @leave="onButtonLeave"
         )
-            svg(:class="`${PROTO_APP_PREFIX}-knob__ring`" width="320" height="320" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg")
-                circle(cx="3" cy="3" r="2.75" transform="matrix(1 0 0 -1 157 25.406)" fill="black" stroke="black" stroke-width="0.5")
-        div(
-            ref="refButton"
-            :class="[`${PROTO_APP_PREFIX}-knob__button`, {'focused': isButtonFocused}]"
-            :style="`width: ${buttonSize}px; height: ${buttonSize}px;`"
-        )
-            Transition(
-                :css="false"
-                @enter="onButtonEnter"
-                @leave="onButtonLeave"
-            )
-                div(
-                    v-if="isButtonFocused"
-                    :class="`${PROTO_APP_PREFIX}-knob__button__visible-layer`"
-                )
-                    span(:class="`${PROTO_APP_PREFIX}-knob__button__visible-layer__action`") Press
-                    ProtoKnobLayer02
-        div(
-            :class="`${PROTO_APP_PREFIX}-knob__texture`"
-        )
-            ProtoKnobLayer01
+          div(
+            v-if="isButtonFocused"
+            :class="`${PROTO_APP_PREFIX}-knob__button__visible-layer`"
+          )
+            span(:class="`${PROTO_APP_PREFIX}-knob__button__visible-layer__action`") Press
+            ProtoKnobLayer02
+    div(
+      :class="`${PROTO_APP_PREFIX}-knob__texture`"
+    )
+      ProtoKnobLayer01
 </template>
 
 <script setup lang="ts">

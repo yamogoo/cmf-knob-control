@@ -1,11 +1,11 @@
 import { describe, expect, test } from 'vitest'
 import { mount } from '@vue/test-utils'
 
-import MainHeader from './MainHeader.vue'
+import ProtoMainHeader from './ProtoMainHeader.vue'
 
-describe('MainHeader', () => {
+describe('ProtoMainHeader', () => {
   test('header should render MainNavigation component', () => {
-    const component = mount(MainHeader)
+    const component = mount(ProtoMainHeader)
 
     const navEl = component.find('[data-test-id="main-navigation"]')
     const isNavElExist = navEl.exists()

@@ -4,23 +4,26 @@ import { describe, expect, test } from 'vitest'
 import ControlSectionButton from './ControlSectionButton.vue'
 
 describe('ControlSectionButton', () => {
-  test.each([1, 2, 3])('should emit "onPress" event with id = (%i)', (id) => {
-    const component = mount(ControlSectionButton, {
-      props: {
-        id,
-        isKnobPressed: false,
-        isFocused: false
-      }
-    })
+  test.each([1, 2, 3])(
+    'should emit "onPress" event with id = (%i) by pressing button via mouse',
+    (id) => {
+      const component = mount(ControlSectionButton, {
+        props: {
+          id,
+          isKnobPressed: false,
+          isFocused: false
+        }
+      })
 
-    const buttonEl = component.find('[data-test-id="control-section-button"]')
-    buttonEl.trigger('mousedown')
-    buttonEl.trigger('mouseup')
+      const buttonEl = component.find('[data-test-id="control-section-button"]')
+      buttonEl.trigger('mousedown')
+      buttonEl.trigger('mouseup')
 
-    const emmitedId = (component.emitted('onPress') as Array<Array<number>>)[0][0]
-    expect(emmitedId).toBe(id)
-    expect(component.emitted('onPress')).toMatchSnapshot()
-  })
+      const emmitedId = (component.emitted('onPress') as Array<Array<number>>)[0][0]
+      expect(emmitedId).toBe(id)
+      expect(component.emitted('onPress')).toMatchSnapshot()
+    }
+  )
 
   test.each(['<p>Slot Content</p>'])('should render slot content (%s)', (slotContent) => {
     const component = mount(ControlSectionButton, {
@@ -64,6 +67,34 @@ describe('ControlSectionButton', () => {
 
       expect(buttonEl.classes(className)).toBe(true)
       expect(buttonEl.classes()).toMatchSnapshot()
+    }
+  )
+
+  test.each([1, 2, 3])(
+    'should emit "onPress" event with id = (%i) by releasing the knob button (passign "isKnobPressed" prop)',
+    async (_id) => {
+      const component = mount(ControlSectionButton, {
+        props: {
+          id: 1,
+          isFocused: false,
+          isKnobPressed: false
+        }
+      })
+
+      await component.setProps({
+        isFocused: true,
+        isKnobPressed: true
+      })
+
+      await component.setProps({
+        isFocused: true,
+        isKnobPressed: false
+      })
+
+      const emmitedId = (component.emitted('onPress') as Array<Array<number>>)[0][0]
+
+      expect(emmitedId).toBe(emmitedId)
+      expect(component.emitted('onPress')).toMatchSnapshot()
     }
   )
 

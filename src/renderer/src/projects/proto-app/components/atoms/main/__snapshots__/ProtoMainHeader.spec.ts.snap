@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ProtoMainHeader > header should render MainNavigation component 1`] = `true`;

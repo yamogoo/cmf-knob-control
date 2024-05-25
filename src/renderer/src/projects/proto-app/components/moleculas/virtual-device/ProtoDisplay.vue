@@ -1,11 +1,11 @@
 <template lang="pug">
 div(:class="`${PROTO_APP_PREFIX}-display`")
-    div(
-        :class="[`${PROTO_APP_PREFIX}-display-container`]"
-        :style="`width: ${size.width}px; height: ${size.height}px;`"    
-    )
-        ProtoScreen
-            slot
+  div(
+    :class="[`${PROTO_APP_PREFIX}-display-container`]"
+    :style="`width: ${size.width}px; height: ${size.height}px;`"    
+  )
+    ProtoScreen
+      slot
 </template>
 
 <script setup lang="ts">

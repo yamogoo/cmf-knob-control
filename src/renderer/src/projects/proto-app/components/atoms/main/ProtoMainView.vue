@@ -1,12 +1,12 @@
 <template lang="pug">
 main(
-  :class="[`${MAIN_APP_PREFIX}-main-view`]"
+  :class="[`${PROTO_APP_PREFIX}-main-view`]"
 )
   slot
 </template>
 
 <script setup lang="ts">
-import { MAIN_APP_PREFIX } from '~@/config'
+import { PROTO_APP_PREFIX } from '@proto/config'
 </script>
 
 <style lang="scss">
@@ -16,7 +16,7 @@ $main-view: (
   lg: ()
 );
 
-.#{$MAIN_APP_PREFIX}-main-view {
+.#{$PROTO_APP_PREFIX}-main-view {
   position: relative;
   display: block;
   @include box(100%);

@@ -1,11 +1,11 @@
 <template lang="pug">
 div(
-    :class="[`${MAIN_APP_PREFIX}-container`]"
+  :class="[`${MAIN_APP_PREFIX}-container`]"
 )
-    //- MainHeader
-    //- MainToolbar
-    MainView
-        div(:id="PROTO_APP_PREFIX")
+  //- MainHeader
+  //- MainToolbar
+  ProtoMainView
+    div(:id="PROTO_APP_PREFIX")
 </template>
 
 <script setup lang="ts">
@@ -13,8 +13,8 @@ import { onMounted } from 'vue'
 import { MAIN_APP_PREFIX } from '~@/config'
 import { app as protoApp, PROTO_APP_PREFIX } from '@proto/main'
 
+import ProtoMainView from '@proto/components/atoms/main/ProtoMainView.vue'
 // import MainHeader from '~@/components/atoms/main/MainHeader.vue'
-import MainView from '~@/components/atoms/main/MainView.vue'
 // import MainToolbar from '~@/components/moleculas/MainToolbar.vue'
 
 onMounted(() => {

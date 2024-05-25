@@ -1,18 +1,18 @@
 <template lang="pug">
 div(
-    :class="[`${APP_PREFIX}-manual-mode`]"
+  :class="[`${APP_PREFIX}-manual-mode`]"
 )
-    Transition(
-        :css="false"
-        @enter="onEnter"
-        @leave="onLeave"
-    )
-        BasePage
-            h1(:style="`color: white;`") Manual Mode
-            BaseSwitch(
-                :is-active="switchState"
-                @on-update-value="onToggleSwitch"
-            )
+  Transition(
+    :css="false"
+    @enter="onEnter"
+    @leave="onLeave"
+  )
+    BasePage
+      h1(:style="`color: white;`") Manual Mode
+      BaseSwitch(
+        :is-active="switchState"
+        @on-update-value="onToggleSwitch"
+      )
 </template>
 
 <script setup lang="ts">
@@ -22,15 +22,6 @@ import g from 'gsap'
 
 import BasePage from '@app/components/atoms/base/pages/BasePage.vue'
 import BaseSwitch from '@app/components/atoms/base/controls/BaseSwitch.vue'
-
-// interface Item {
-//   id: number
-//   name: string
-//   style?: any
-// }
-
-// !TEMP
-// const items: Item[] = []
 
 export interface Props {}
 

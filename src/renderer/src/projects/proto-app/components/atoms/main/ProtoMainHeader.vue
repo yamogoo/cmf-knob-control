@@ -1,16 +1,16 @@
 <template lang="pug">
 header(
-  :class="[`${MAIN_APP_PREFIX}-main-header`]"
+  :class="[`${PROTO_APP_PREFIX}-main-header`]"
 )
-  MainNavigation(
+  ProtoMainNavigation(
     data-test-id="main-navigation"
   )
 </template>
 
 <script setup lang="ts">
-import { MAIN_APP_PREFIX } from '~@/config'
+import { PROTO_APP_PREFIX } from '@proto/config'
 
-import MainNavigation from '~@/components/atoms/main/MainNavigation.vue'
+import ProtoMainNavigation from '@proto/components/atoms/main/ProtoMainNavigation.vue'
 </script>
 
 <style lang="scss">
@@ -32,7 +32,7 @@ $main-header: (
   )
 );
 
-.#{$MAIN_APP_PREFIX}-main-header {
+.#{$PROTO_APP_PREFIX}-main-header {
   position: relative;
   display: block;
   width: 100%;

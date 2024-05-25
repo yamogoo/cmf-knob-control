@@ -9,6 +9,5 @@ import ProtoHousing from './ProtoHousing.vue'
 </script>
 
 <style lang="scss">
-.#{$PROTO_APP_PREFIX}-front-panel {
-}
+// .#{$PROTO_APP_PREFIX}-front-panel {}
 </style>

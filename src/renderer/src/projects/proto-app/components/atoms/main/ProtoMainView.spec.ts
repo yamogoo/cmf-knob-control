@@ -1,11 +1,11 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, test } from 'vitest'
 
-import MainView from './MainView.vue'
+import ProtoMainView from './ProtoMainView.vue'
 
-describe('MainView', () => {
+describe('ProtoMainView', () => {
   test.each(['<p>Slot Content</p>'])('should render default slot (%s)', (content) => {
-    const component = mount(MainView, {
+    const component = mount(ProtoMainView, {
       slots: {
         default: content
       }

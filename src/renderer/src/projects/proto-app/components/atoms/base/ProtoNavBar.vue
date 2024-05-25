@@ -1,18 +1,18 @@
 <template lang="pug">
 div(
-    :class="[`${PROTO_APP_PREFIX}-navbar`]"
+  :class="[`${PROTO_APP_PREFIX}-navbar`]"
 )
-    div(:class="[`${PROTO_APP_PREFIX}-navbar-container`]")
-        OptionPicker(
-            :options="options"
-            :init-value="options[0]"
-            @on-update-option="onUpdateOption"
-        )
-        OptionPicker(
-            :options="options"
-            :init-value="options[0]"
-            @on-update-option="onUpdateOption"
-        )
+  div(:class="[`${PROTO_APP_PREFIX}-navbar-container`]")
+    OptionPicker(
+      :options="options"
+      :init-value="options[0]"
+      @on-update-option="onUpdateOption"
+    )
+    OptionPicker(
+      :options="options"
+      :init-value="options[0]"
+      @on-update-option="onUpdateOption"
+    )
 </template>
 
 <script setup lang="ts">

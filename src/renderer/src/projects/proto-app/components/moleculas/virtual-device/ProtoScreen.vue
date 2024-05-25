@@ -1,6 +1,6 @@
 <template lang="pug">
 div(:class="[`${PROTO_APP_PREFIX}-screen`]")
-    slot
+  slot
 </template>
 
 <script setup lang="ts">

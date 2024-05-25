@@ -1,6 +1,6 @@
 <template lang="pug">
 div(
-    :class="[`${PROTO_APP_PREFIX}-toolbar`]"
+  :class="[`${PROTO_APP_PREFIX}-toolbar`]"
 )
 </template>
 
@@ -17,6 +17,5 @@ $toolbar: (
   xl: ()
 );
 
-.#{PROTO_APP_PREFIX}-toolbar {
-}
+// .#{PROTO_APP_PREFIX}-toolbar {}
 </style>

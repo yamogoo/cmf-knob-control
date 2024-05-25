@@ -1,17 +1,17 @@
 <template lang="pug">
 div(
-    ref="refRoot"
-    :class="[`${APP_PREFIX}-switch`]"
-    @click="onUpdateValue"
+  ref="refRoot"
+  :class="[`${APP_PREFIX}-switch`]"
+  @click="onUpdateValue"
 )
+  div(
+    ref="refTrack"
+    :class="[`${APP_PREFIX}-switch__track`]"
+  )
     div(
-        ref="refTrack"
-        :class="[`${APP_PREFIX}-switch__track`]"
+      ref="refKnob"
+      :class="[`${APP_PREFIX}-switch__knob`]"
     )
-        div(
-            ref="refKnob"
-            :class="[`${APP_PREFIX}-switch__knob`]"
-        )
 </template>
 
 <script setup lang="ts">
@@ -34,11 +34,15 @@ const onUpdateValue = (): void => {
 }
 </script>
 
-<!-- <style lang="scss">
+<style lang="scss">
 .#{$APP_PREFIX}-switch {
+  @include box(32px);
+  background-color: red;
 
-    &__track {}
+  &__track {
+  }
 
-    &__knob {}
+  &__knob {
+  }
 }
-</style> -->
+</style>

@@ -16,16 +16,16 @@ Transition(
       :gap="40"
       @update:sid="onUpdateScreenSid"
     )
-        div(:class="[`${APP_PREFIX}-grid-stack`]")
-          ControlSectionButton(
-            v-for="slot, idx in slots[screen.id]"
-            :id="slot.id"
-            :key="idx"
-            :is-focused="slot.id === slotSid"
-            :is-knob-pressed="slot.id === slotSid && isKnobPressed"
-            @on-press="onButtonPress(slot)"
-          )
-            span Item {{ String('0' + slot.id).slice(-2) }}
+      div(:class="[`${APP_PREFIX}-grid-stack`]")
+        ControlSectionButton(
+          v-for="slot, idx in slots[screen.id]"
+          :id="slot.id"
+          :key="idx"
+          :is-focused="slot.id === slotSid"
+          :is-knob-pressed="slot.id === slotSid && isKnobPressed"
+          @on-press="onButtonPress(slot)"
+        )
+          span Item {{ String('0' + slot.id).slice(-2) }}
 </template>
 
 <script setup lang="ts">
@@ -110,6 +110,7 @@ const screenSid = computed(() => (slotSid.value > 5 ? 1 : 0))
 /* * * Knob * * */
 
 const isKnobPressed = ref(false)
+const isKnobReleased = ref(true)
 
 onMounted(() => {
   document.addEventListener('knobturnleft', knobTurnLeftHandler)
@@ -127,9 +128,11 @@ onUnmounted(() => {
 
 const knobReleaseHandler = (): void => {
   isKnobPressed.value = false
+  isKnobReleased.value = true
 }
 const knobPressHandler = (): void => {
   isKnobPressed.value = true
+  isKnobReleased.value = false
 }
 
 const knobTurnLeftHandler = (): void => {

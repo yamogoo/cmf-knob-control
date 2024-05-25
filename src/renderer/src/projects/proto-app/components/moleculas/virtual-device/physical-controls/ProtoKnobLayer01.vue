@@ -28,9 +28,6 @@
       transform="rotate(180 160 160.148)"
       stroke="url(#paint2_linear_416_68427)"
     />
-    <!-- Dot -->
-    <!-- <circle cx="3" cy="3" r="2.75" transform="matrix(1 0 0 -1 157 25.406)" fill="black" stroke="black"
-        stroke-width="0.5" /> -->
     <defs>
       <linearGradient
         id="paint0_linear_416_68427"
