@@ -4,7 +4,7 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 // import icon from '../../resources/icon.png'
 
 import { defineLogger } from './utils/logger'
-import { defineControlBoard } from './controlBoard'
+import { createControlBoard } from './controlBoard'
 
 import { MenuHelper } from './menuHelper'
 
@@ -13,7 +13,7 @@ config()
 
 const logger = defineLogger(app.name)
 
-const controlBoard = defineControlBoard(logger)
+const controlBoard = createControlBoard(logger)
 
 let mainWindow: BrowserWindow
 

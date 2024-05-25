@@ -1,0 +1,61 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ControlSectionButton > should emit "onPress" event with id = (1) 1`] = `
+[
+  [
+    1,
+  ],
+]
+`;
+
+exports[`ControlSectionButton > should emit "onPress" event with id = (2) 1`] = `
+[
+  [
+    2,
+  ],
+]
+`;
+
+exports[`ControlSectionButton > should emit "onPress" event with id = (3) 1`] = `
+[
+  [
+    3,
+  ],
+]
+`;
+
+exports[`ControlSectionButton > should have "focused" class 1`] = `
+[
+  "cmf-app-control-boxed-button",
+  "focused",
+  "released",
+]
+`;
+
+exports[`ControlSectionButton > should have "pressed" class by passign "isKnobPressed" prop from parent 1`] = `
+[
+  "cmf-app-control-boxed-button",
+  "pressed",
+]
+`;
+
+exports[`ControlSectionButton > should have "pressed" class by pressing the button 1`] = `
+[
+  "cmf-app-control-boxed-button",
+  "pressed",
+]
+`;
+
+exports[`ControlSectionButton > should have "released" class 1`] = `
+[
+  "cmf-app-control-boxed-button",
+  "focused",
+  "released",
+]
+`;
+
+exports[`ControlSectionButton > should render slot content (<p>Slot Content</p>) 1`] = `
+"<div class="cmf-app-control-boxed-button released" data-test-id="control-section-button">
+  <p>Slot Content</p>
+</div>"
+`;

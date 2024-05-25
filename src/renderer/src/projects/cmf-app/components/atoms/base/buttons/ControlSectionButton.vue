@@ -28,11 +28,10 @@ const emit = defineEmits<{
 }>()
 
 const refRoot = ref<HTMLDivElement | null>(null)
-const isPressed = ref(false)
+const isPressed = ref(props.isKnobPressed)
 
 const onMouseDown = (e: MouseEvent): void => {
   e.preventDefault()
-  // e.stopPropagation();
 
   onPress(true)
 
@@ -55,7 +54,6 @@ const mouseMoveHandler = (_e: MouseEvent) => {}
 
 const mouseUpHandler = (e: MouseEvent) => {
   e.preventDefault()
-  // e.stopPropagation();
 
   onPress(false)
 
@@ -64,7 +62,6 @@ const mouseUpHandler = (e: MouseEvent) => {
 
 const mouseOutHandler = (e: MouseEvent) => {
   e.preventDefault()
-  // e.stopPropagation();
 
   onPress(false)
 

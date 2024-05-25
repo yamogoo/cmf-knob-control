@@ -131,6 +131,6 @@ export class ControlBoard extends EventEmitter {
   }
 }
 
-export const defineControlBoard = (logger: Logger, opts?: ControlBoardOptions) => {
+export const createControlBoard = (logger: Logger, opts?: ControlBoardOptions) => {
   return new ControlBoard(logger, opts)
 }

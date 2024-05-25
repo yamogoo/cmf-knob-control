@@ -9,3 +9,25 @@ exports[`MiniClock > should render current time (10:15) 1`] = `"10:15"`;
 exports[`MiniClock > should render current time (10:36) 1`] = `"10:36"`;
 
 exports[`MiniClock > should render current time (10:38) 1`] = `"10:38"`;
+
+exports[`MiniClock > should render current time (11:17) 1`] = `"11:17"`;
+
+exports[`MiniClock > should render current time (11:18) 1`] = `"11:18"`;
+
+exports[`MiniClock > should render current time (11:19) 1`] = `"11:19"`;
+
+exports[`MiniClock > should render current time (11:20) 1`] = `"11:20"`;
+
+exports[`MiniClock > should render current time (11:21) 1`] = `"11:21"`;
+
+exports[`MiniClock > should render current time (11:24) 1`] = `"11:24"`;
+
+exports[`MiniClock > should render current time (11:25) 1`] = `"11:25"`;
+
+exports[`MiniClock > should render current time (11:26) 1`] = `"11:26"`;
+
+exports[`MiniClock > should render current time (12:36) 1`] = `"12:36"`;
+
+exports[`MiniClock > should render current time (12:38) 1`] = `"12:38"`;
+
+exports[`MiniClock > should render current time (12:40) 1`] = `"12:40"`;
