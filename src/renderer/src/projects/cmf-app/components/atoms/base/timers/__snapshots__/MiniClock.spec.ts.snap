@@ -26,11 +26,77 @@ exports[`MiniClock > should render current time (11:25) 1`] = `"11:25"`;
 
 exports[`MiniClock > should render current time (11:26) 1`] = `"11:26"`;
 
+exports[`MiniClock > should render current time (11:32) 1`] = `"11:32"`;
+
+exports[`MiniClock > should render current time (11:46) 1`] = `"11:46"`;
+
+exports[`MiniClock > should render current time (12:05) 1`] = `"12:05"`;
+
+exports[`MiniClock > should render current time (12:13) 1`] = `"12:13"`;
+
+exports[`MiniClock > should render current time (12:14) 1`] = `"12:14"`;
+
+exports[`MiniClock > should render current time (12:15) 1`] = `"12:15"`;
+
+exports[`MiniClock > should render current time (12:16) 1`] = `"12:16"`;
+
+exports[`MiniClock > should render current time (12:18) 1`] = `"12:18"`;
+
+exports[`MiniClock > should render current time (12:20) 1`] = `"12:20"`;
+
+exports[`MiniClock > should render current time (12:21) 1`] = `"12:21"`;
+
+exports[`MiniClock > should render current time (12:22) 1`] = `"12:22"`;
+
+exports[`MiniClock > should render current time (12:23) 1`] = `"12:23"`;
+
+exports[`MiniClock > should render current time (12:28) 1`] = `"12:28"`;
+
+exports[`MiniClock > should render current time (12:30) 1`] = `"12:30"`;
+
+exports[`MiniClock > should render current time (12:31) 1`] = `"12:31"`;
+
+exports[`MiniClock > should render current time (12:32) 1`] = `"12:32"`;
+
+exports[`MiniClock > should render current time (12:34) 1`] = `"12:34"`;
+
 exports[`MiniClock > should render current time (12:36) 1`] = `"12:36"`;
 
 exports[`MiniClock > should render current time (12:38) 1`] = `"12:38"`;
 
 exports[`MiniClock > should render current time (12:40) 1`] = `"12:40"`;
+
+exports[`MiniClock > should render current time (12:41) 1`] = `"12:41"`;
+
+exports[`MiniClock > should render current time (12:42) 1`] = `"12:42"`;
+
+exports[`MiniClock > should render current time (12:43) 1`] = `"12:43"`;
+
+exports[`MiniClock > should render current time (12:44) 1`] = `"12:44"`;
+
+exports[`MiniClock > should render current time (12:45) 1`] = `"12:45"`;
+
+exports[`MiniClock > should render current time (12:57) 1`] = `"12:57"`;
+
+exports[`MiniClock > should render current time (13:01) 1`] = `"13:01"`;
+
+exports[`MiniClock > should render current time (13:04) 1`] = `"13:04"`;
+
+exports[`MiniClock > should render current time (13:05) 1`] = `"13:05"`;
+
+exports[`MiniClock > should render current time (13:07) 1`] = `"13:07"`;
+
+exports[`MiniClock > should render current time (13:08) 1`] = `"13:08"`;
+
+exports[`MiniClock > should render current time (13:13) 1`] = `"13:13"`;
+
+exports[`MiniClock > should render current time (13:15) 1`] = `"13:15"`;
+
+exports[`MiniClock > should render current time (13:16) 1`] = `"13:16"`;
+
+exports[`MiniClock > should render current time (13:18) 1`] = `"13:18"`;
+
+exports[`MiniClock > should render current time (13:19) 1`] = `"13:19"`;
 
 exports[`MiniClock > should render current time (20:15) 1`] = `"20:15"`;
 

@@ -1,19 +1,29 @@
 <template lang="pug">
-div(:class="[`${APP_PREFIX}-status-panel`]")
-    div(:class="[`${APP_PREFIX}-status-panel-container`]")
-        div(:class="[`${APP_PREFIX}-status-panel__status`]")
-            WiFiSign(
-                :level="wifiLevel"
-                :is-connected="wifiIsConnected"
-            )
-            slot(name="status")
-        div(:class="[`${APP_PREFIX}-status-panel__info`]")
-            slot
-        div(
-            v-if="$slots.action"
-            :class="[`${APP_PREFIX}-status-panel__action`]"
-        )
-            slot(name="action")
+div(
+  :class="[`${APP_PREFIX}-status-panel`]"
+  data-test-id="status-panel"
+)
+  div(:class="[`${APP_PREFIX}-status-panel-container`]")
+    div(
+      :class="[`${APP_PREFIX}-status-panel__status`]"
+      data-test-id="status-panel__status"
+    )
+      WiFiSign(
+        :level="wifiLevel"
+        :is-connected="wifiIsConnected"
+      )
+      slot(name="status")
+    div(
+      :class="[`${APP_PREFIX}-status-panel__info`]"
+      data-test-id="status-panel__info"
+    )
+      slot
+    div(
+      v-if="$slots.action"
+      :class="[`${APP_PREFIX}-status-panel__action`]"
+      data-test-id="status-panel__action"
+    )
+      slot(name="action")
 </template>
 
 <script setup lang="ts">

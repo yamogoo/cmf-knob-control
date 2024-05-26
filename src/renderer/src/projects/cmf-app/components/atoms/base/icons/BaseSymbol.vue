@@ -1,8 +1,8 @@
 <template lang="pug">
 component(
-    :is="component"
-    v-if="show"
-    :class="[`${APP_PREFIX}-icon`]"
+  :is="component"
+  v-if="show"
+  :class="[`${APP_PREFIX}-icon`]"
 )
 </template>
 

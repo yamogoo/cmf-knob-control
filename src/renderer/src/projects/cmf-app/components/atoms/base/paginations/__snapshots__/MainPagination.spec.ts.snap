@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MainPagination > an indicator should have size (12) 1`] = `"width: 12px; height: 12px; border-radius: 6px;"`;
+
+exports[`MainPagination > first indicator should have "active" class 1`] = `true`;
+
+exports[`MainPagination > should have indicators count (6) 1`] = `6`;

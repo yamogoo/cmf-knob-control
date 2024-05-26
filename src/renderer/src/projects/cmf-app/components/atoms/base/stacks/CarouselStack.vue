@@ -33,8 +33,8 @@ div(
     MainPagination(
       v-if="itemsLength > 1"
       data-test-id="MainPagination"
-      :items-count="itemsLength"
       :sid="itemSid"
+      :items-count="itemsLength"
     )
 </template>
 
