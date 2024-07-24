@@ -21,13 +21,9 @@ export class ControlBoard extends EventEmitter {
     opts?: ControlBoardOptions
   ) {
     super()
-
     this.logger = logger
-
     this.deviceVidPidList = process.env.VITE_CONTROL_BOARD_VIDPID_LIST
-
     this.baudRate = opts?.baudRate ?? 115200
-
     this.serialParser = new DelimiterParser({
       delimiter: Buffer.from('\r\n'),
       includeDelimiter: true
@@ -44,7 +40,6 @@ export class ControlBoard extends EventEmitter {
     for (let i = 0; i < vpidList.length; i++) {
       for (let j = 0; j < portInfoList.length; j++) {
         const currentPort = portInfoList[j]
-
         const { vendorId, productId } = currentPort
 
         if (vendorId === vpidList[i][0] && productId === vpidList[i][1]) {
@@ -120,7 +115,6 @@ export class ControlBoard extends EventEmitter {
 
     this.on('port-updated', (path) => {
       this.logger.logInfo('SERIAL PORT: device detected', { path })
-
       this.read()
 
       this.serial?.on('close', () => {

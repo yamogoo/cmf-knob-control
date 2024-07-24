@@ -2,10 +2,13 @@
 div(
   ref="refRoot"
   :class="[CLASS_NAME, {'focused': isFocused}, isPressed ? Statuses.PRESSED : Statuses.RELEASED]"
-  data-test-id="control-section-button"
+  data-testid="control-section-button"
   @mousedown="onMouseDown"
 )
   slot
+  slot(
+    :name="`button_${id}`"
+  )
 </template>
 
 <script setup lang="ts">
@@ -15,13 +18,16 @@ import g from 'gsap'
 
 const CLASS_NAME = `${APP_PREFIX}-control-boxed-button`
 
-interface Props {
+interface Props extends ControlSectionButtonStateProps {
   id: number
   isKnobPressed: boolean
   isFocused: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {})
+const props = withDefaults(defineProps<Props>(), {
+  isPressable: true,
+  isDisabled: false
+})
 
 const emit = defineEmits<{
   (e: 'onPress', id: number): void
@@ -48,7 +54,7 @@ watch(
     isPressed.value = props.isKnobPressed
 
     if (!isPressed.value) emit('onPress', props.id)
-    onAnimPress(isPressed.value)
+    if (props.isPressable) onAnimPress(isPressed.value)
   }
 )
 
@@ -64,7 +70,7 @@ const mouseUpHandler = (e: MouseEvent) => {
 const mouseOutHandler = (e: MouseEvent) => {
   e.preventDefault()
 
-  onPress(false)
+  if (props.isPressable) onPress(false)
 
   if (refRoot.value) {
     refRoot.value.removeEventListener('mouseup', mouseUpHandler)
@@ -73,7 +79,7 @@ const mouseOutHandler = (e: MouseEvent) => {
 }
 
 onUnmounted(() => {
-  onPress(false)
+  if (props.isPressable) onPress(false)
 
   if (refRoot.value) {
     refRoot.value.removeEventListener('mouseup', mouseUpHandler)
@@ -108,6 +114,11 @@ export enum Classes {}
 export enum Statuses {
   PRESSED = 'pressed',
   RELEASED = 'released'
+}
+
+export interface ControlSectionButtonStateProps {
+  isPressable?: boolean
+  isDisabled?: boolean
 }
 </script>
 

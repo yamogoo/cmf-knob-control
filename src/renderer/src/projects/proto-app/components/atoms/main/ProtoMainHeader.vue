@@ -3,7 +3,7 @@ header(
   :class="[`${PROTO_APP_PREFIX}-main-header`]"
 )
   ProtoMainNavigation(
-    data-test-id="main-navigation"
+    data-testid="main-navigation"
   )
 </template>
 

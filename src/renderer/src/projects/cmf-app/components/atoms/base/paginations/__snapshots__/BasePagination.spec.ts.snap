@@ -7,7 +7,7 @@ exports[`BasePagination > should render min: 0, max: 6, step: %i 1`] = `6`;
 exports[`BasePagination > should render min: 0, max: 9, step: %i 1`] = `9`;
 
 exports[`BasePagination > should render slot content (<p id="test">Slot content</p>) 1`] = `
-"<div data-test-id="pagination-indicator" id="0" class="cmf-app-pagination-item">
+"<div data-testid="pagination-indicator" id="0" class="cmf-app-pagination-item">
   <p id="test">Slot content</p>
 </div>"
 `;

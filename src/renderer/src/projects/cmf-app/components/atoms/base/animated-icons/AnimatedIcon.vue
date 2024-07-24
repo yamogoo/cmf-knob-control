@@ -1,7 +1,8 @@
 <template lang="pug">
 lottie(
   ref="refRoot"
-  :style="`width: ${100}%; height: ${100}%;`"
+  data-testid="lottie"
+  :style="{width: `${100}%`, height: `${100}%`}"
   :animation-data="animationData"
   :animation-link="animationLink"
   :loop="loop"
@@ -21,22 +22,22 @@ const settings = reactive({
   renderSettings: {}
 })
 
-const refRoot = ref<any | null>(null)
+const refRoot = ref<HTMLOrSVGElement | null>(null)
 
 /* * * Props * * */
 
 export interface Props {
-  animationData?: object | undefined
-  animationLink?: string
-  name?: string
-  loop?: boolean
-  speed?: number
-  delay?: number
-  autoplay?: boolean
-  renderer?: string
+  animationData: object
+  animationLink: string
+  name: string
+  loop: boolean
+  speed: number
+  delay: number
+  autoplay: boolean
+  renderer: string
 }
 
-withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Partial<Props>>(), {
   animationData: undefined,
   animationLink: undefined,
   name: 'default',

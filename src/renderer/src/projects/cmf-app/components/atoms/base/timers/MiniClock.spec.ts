@@ -10,8 +10,9 @@ describe('MiniClock', () => {
   test(`should render current time (${currentTime})`, () => {
     const component = mount(MiniClock)
 
-    const timeEl = component.find('[data-test-id="mini-clock__time"]').text()
-    expect(timeEl).toContain(String(currentTime))
-    expect(timeEl).toMatchSnapshot()
+    const timeEl = component.find('[data-testid="mini-clock__time"]')
+
+    expect(timeEl.text()).toContain(String(currentTime))
+    expect(timeEl.text() === currentTime).toMatchSnapshot()
   })
 })

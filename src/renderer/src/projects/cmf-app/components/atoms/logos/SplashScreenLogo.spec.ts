@@ -7,7 +7,7 @@ describe('SplashScreenLogo', () => {
   test('should render lottie icon DOM element', async () => {
     const component = mount(SplashScreenLogo)
 
-    const lottieEl = component.find('[data-test-id="lottie"]')
+    const lottieEl = component.find('[data-testid="lottie"]')
     const isLottieElExist = lottieEl.exists()
 
     expect(isLottieElExist).toBe(true)

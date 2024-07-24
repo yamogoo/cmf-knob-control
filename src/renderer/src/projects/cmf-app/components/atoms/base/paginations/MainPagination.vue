@@ -8,7 +8,7 @@ BasePagination(
         ref="refItem"
         :class="[`${APP_PREFIX}-pagination__item-indicator`, isActive ? Classes.ACTIVE : Classes.NORMAL]"
         :style="{width: size + 'px', height: size + 'px', borderRadius: size/2 + 'px'}"
-        data-test-id="pagination__item-indicator"
+        data-testid="pagination__item-indicator"
     )
 </template>
 

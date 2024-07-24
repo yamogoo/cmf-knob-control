@@ -1,7 +1,7 @@
 <template lang="pug">
 lottie(
     ref="refRoot"
-    data-test-id="lottie"
+    data-testid="lottie"
     :style="`width: ${100}%; height: ${100}%;`"
     :animation-data="Logo"
     :loop="false"

@@ -33,3 +33,6 @@ coverage
 /build
 /out
 /control-board
+tests-report
+# Local Netlify folder
+.netlify

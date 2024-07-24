@@ -15,7 +15,7 @@ describe('ControlSectionButton', () => {
         }
       })
 
-      const buttonEl = component.find('[data-test-id="control-section-button"]')
+      const buttonEl = component.find('[data-testid="control-section-button"]')
       buttonEl.trigger('mousedown')
       buttonEl.trigger('mouseup')
 
@@ -32,7 +32,7 @@ describe('ControlSectionButton', () => {
       }
     })
 
-    const html = component.find('[data-test-id="control-section-button"]').html()
+    const html = component.find('[data-testid="control-section-button"]').html()
     expect(html).toContain(slotContent)
     expect(html).toMatchSnapshot()
   })
@@ -46,7 +46,7 @@ describe('ControlSectionButton', () => {
       }
     })
 
-    const buttonEl = component.find('[data-test-id="control-section-button"]')
+    const buttonEl = component.find('[data-testid="control-section-button"]')
 
     expect(buttonEl.classes(className)).toBe(true)
     expect(buttonEl.classes()).toMatchSnapshot()
@@ -63,7 +63,7 @@ describe('ControlSectionButton', () => {
         }
       })
 
-      const buttonEl = component.find('[data-test-id="control-section-button"]')
+      const buttonEl = component.find('[data-testid="control-section-button"]')
 
       expect(buttonEl.classes(className)).toBe(true)
       expect(buttonEl.classes()).toMatchSnapshot()
@@ -107,7 +107,7 @@ describe('ControlSectionButton', () => {
       }
     })
 
-    const buttonEl = component.find('[data-test-id="control-section-button"]')
+    const buttonEl = component.find('[data-testid="control-section-button"]')
     buttonEl.trigger('mousedown')
 
     expect(buttonEl.classes(className)).toBe(true)

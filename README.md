@@ -1,21 +1,30 @@
-# cmf-knob-control
+# Knob Control prototype
 
-[preview](https://661f819b1e89ce000959b8d9--cmf-knob-control.netlify.app/)
+🕹 [Demo](https://cmf-knob-control.netlify.app/)
 
 ## Project Setup
 
 ```sh
-npm install
+pnpm install
 ```
 
-### Compile and Hot-Reload for Development
+### Run vite app (Hot-Reload)
 
 ```sh
-npm run dev
+pnpm vite-preview
 ```
 
-### Type-Check, Compile and Minify for Production
+### Run electron app (Hot-Reload)
 
 ```sh
-npm run build
+pnpm dev
+```
+
+### Electron build
+
+```sh
+pnpm build
+pnpm build:mac
+pnpm build:win
+pnpm build:linux
 ```

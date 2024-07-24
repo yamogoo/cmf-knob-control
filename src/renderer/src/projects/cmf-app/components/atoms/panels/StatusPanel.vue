@@ -1,12 +1,12 @@
 <template lang="pug">
 div(
   :class="[`${APP_PREFIX}-status-panel`]"
-  data-test-id="status-panel"
+  data-testid="status-panel"
 )
   div(:class="[`${APP_PREFIX}-status-panel-container`]")
     div(
       :class="[`${APP_PREFIX}-status-panel__status`]"
-      data-test-id="status-panel__status"
+      data-testid="status-panel__status"
     )
       WiFiSign(
         :level="wifiLevel"
@@ -15,13 +15,13 @@ div(
       slot(name="status")
     div(
       :class="[`${APP_PREFIX}-status-panel__info`]"
-      data-test-id="status-panel__info"
+      data-testid="status-panel__info"
     )
       slot
     div(
       v-if="$slots.action"
       :class="[`${APP_PREFIX}-status-panel__action`]"
-      data-test-id="status-panel__action"
+      data-testid="status-panel__action"
     )
       slot(name="action")
 </template>

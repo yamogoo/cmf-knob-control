@@ -9,7 +9,7 @@ describe('MainPagination', () => {
       props: { sid, itemsCount }
     })
 
-    const indicatorEls = component.findAll('[data-test-id="pagination__item-indicator"]')
+    const indicatorEls = component.findAll('[data-testid="pagination__item-indicator"]')
     const length = indicatorEls.length
 
     expect(length).toBe(itemsCount)
@@ -25,7 +25,7 @@ describe('MainPagination', () => {
       }
     })
 
-    const indicatorEls = component.findAll('[data-test-id="pagination__item-indicator"]')
+    const indicatorEls = component.findAll('[data-testid="pagination__item-indicator"]')
     const indicatorStyle = indicatorEls[0].attributes('style')
 
     expect(indicatorStyle).toContain(`width: ${size}px;`)
@@ -42,7 +42,7 @@ describe('MainPagination', () => {
       }
     })
 
-    const indicatorEls = component.findAll('[data-test-id="pagination__item-indicator"]')
+    const indicatorEls = component.findAll('[data-testid="pagination__item-indicator"]')
     const firstIndicator = indicatorEls[0]
     const isActiveExist = firstIndicator.classes('active')
 

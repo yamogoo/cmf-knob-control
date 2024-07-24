@@ -23,9 +23,14 @@ Transition(
           :key="idx"
           :is-focused="slot.id === slotSid"
           :is-knob-pressed="slot.id === slotSid && isKnobPressed"
+          :is-pressable="false"
           @on-press="onButtonPress(slot)"
         )
           span Item {{ String('0' + slot.id).slice(-2) }}
+          template( #button_0 )
+            UISwitch(
+              :checked="isSwitchPressed"
+            )
 </template>
 
 <script setup lang="ts">
@@ -38,9 +43,12 @@ import { useRouter } from 'vue-router'
 import { flattenMatrix } from '~@/utils/matrix'
 
 import UIBasePage from '@app/components/atoms/base/pages/BasePage.vue'
+import UISwitch from '@app/components/atoms/base/switch/UISwitch.vue'
 import StatusPanel from '@app/components/atoms/panels/StatusPanel.vue'
 import CarouselStack from '@app/components/atoms/base/stacks/CarouselStack.vue'
-import ControlSectionButton from '@app/components/atoms/base/buttons/ControlSectionButton.vue'
+import ControlSectionButton, {
+  type ControlSectionButtonStateProps
+} from '@app/components/atoms/base/buttons/ControlSectionButton.vue'
 import MiniClock from '@app/components/atoms/base/timers/MiniClock.vue'
 
 const slots = ref<ControlButtonSlot[][]>([
@@ -48,7 +56,10 @@ const slots = ref<ControlButtonSlot[][]>([
     {
       id: 0,
       name: 'Manual',
-      type: ButtonTypes.SECTION
+      type: ButtonTypes.SECTION,
+      props: {
+        isPressable: false
+      }
       // url: absoluteUrls.MANUAL_MODE
     },
     {
@@ -149,11 +160,15 @@ const knobTurnRightHandler = (): void => {
 
 /* * * Buttons * * */
 
+const isSwitchPressed = ref(false)
+
 const onButtonPress = (slot: ControlButtonSlot): void => {
   slotSid.value = slot.id
 
   const flatten = flattenMatrix<ControlButtonSlot>(slots.value)
   const id = slot.id ?? 0
+
+  if (id === 0) isSwitchPressed.value = !isSwitchPressed.value
 
   if (flatten[id].url) {
     router.push({ path: absoluteUrls.MANUAL_MODE })
@@ -195,6 +210,7 @@ export interface ControlButtonSlot {
   disabled?: boolean
   type: ButtonTypes
   url?: string
+  props?: ControlSectionButtonStateProps
 }
 </script>
 

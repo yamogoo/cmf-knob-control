@@ -79,7 +79,7 @@ exports[`ControlSectionButton > should have "released" class 1`] = `
 `;
 
 exports[`ControlSectionButton > should render slot content (<p>Slot Content</p>) 1`] = `
-"<div class="cmf-app-control-boxed-button released" data-test-id="control-section-button">
+"<div class="cmf-app-control-boxed-button released" data-testid="control-section-button">
   <p>Slot Content</p>
 </div>"
 `;

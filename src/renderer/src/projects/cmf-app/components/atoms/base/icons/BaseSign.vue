@@ -1,11 +1,11 @@
 <template lang="pug">
 div(
   :class="[CLASS_NAME,`${CLASS_NAME}--${size}`]"
-  data-test-id="base-sign"
+  data-testid="base-sign"
 )
   BaseIcon(
     :name="name"
-    data-test-id="base-icon"
+    data-testid="base-icon"
   )
 </template>
 

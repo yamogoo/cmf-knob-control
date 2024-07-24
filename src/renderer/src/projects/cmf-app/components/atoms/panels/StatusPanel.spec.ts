@@ -15,7 +15,7 @@ describe('StatusPanel', () => {
         }
       })
 
-      const statusPanelEl = component.find('[data-test-id="status-panel__info"]')
+      const statusPanelEl = component.find('[data-testid="status-panel__info"]')
       const html = statusPanelEl.html()
 
       expect(html).toContain(slotContent)
@@ -33,7 +33,7 @@ describe('StatusPanel', () => {
         }
       })
 
-      const statusPanelEl = component.find('[data-test-id="status-panel__action"]')
+      const statusPanelEl = component.find('[data-testid="status-panel__action"]')
       const html = statusPanelEl.html()
 
       expect(html).toContain(slotContent)
@@ -51,7 +51,7 @@ describe('StatusPanel', () => {
         }
       })
 
-      const statusPanelEl = component.find('[data-test-id="status-panel__status"]')
+      const statusPanelEl = component.find('[data-testid="status-panel__status"]')
       const html = statusPanelEl.html()
 
       expect(html).toContain(slotContent)

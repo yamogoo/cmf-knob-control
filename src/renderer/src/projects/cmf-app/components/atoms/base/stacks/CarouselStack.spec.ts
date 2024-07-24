@@ -21,7 +21,7 @@ describe('CarouselStack', () => {
 
         await nextTick()
 
-        const itemEls = component.findAll('[data-test-id="carousel-stack__item"]')
+        const itemEls = component.findAll('[data-testid="carousel-stack__item"]')
 
         expect(itemEls.length).toBe(items)
         expect(itemEls.length).toMatchSnapshot()
@@ -40,7 +40,7 @@ describe('CarouselStack', () => {
 
         await nextTick()
 
-        const itemEls = component.findAll('[data-test-id="carousel-stack__item"]')
+        const itemEls = component.findAll('[data-testid="carousel-stack__item"]')
 
         for (let idx = 0; idx < itemEls.length; idx++) {
           expect(itemEls[idx].attributes('id')).toBe(`${idx}`)
@@ -63,7 +63,7 @@ describe('CarouselStack', () => {
             }
           })
 
-          const html = component.findAll('[data-test-id="carousel-stack__item"]')[0].html()
+          const html = component.findAll('[data-testid="carousel-stack__item"]')[0].html()
           expect(html).toContain(defaultSlotContent)
           expect(html).toMatchSnapshot()
         }
@@ -82,7 +82,7 @@ describe('CarouselStack', () => {
             }
           })
 
-          const html = component.findAll('[data-test-id="carousel-stack__item"]')[0].html()
+          const html = component.findAll('[data-testid="carousel-stack__item"]')[0].html()
           expect(html).toContain(slideSlotContent)
           expect(html).toMatchSnapshot()
         }
@@ -125,7 +125,7 @@ describe('CarouselStack', () => {
           }
         })
 
-        const pagination = component.find('[data-test-id="MainPagination"]')
+        const pagination = component.find('[data-testid="MainPagination"]')
         const isPaginationExist = pagination.exists()
 
         expect(isPaginationExist).toBe(false)

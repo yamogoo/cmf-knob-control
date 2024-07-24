@@ -4,7 +4,7 @@ div(
 )
     div(
         v-for="idx in itemsCount"
-        data-test-id="pagination-indicator"
+        data-testid="pagination-indicator"
         :id="String(idx - 1)"
         :key="idx - 1"
         :class="[`${APP_PREFIX}-pagination-item`]"

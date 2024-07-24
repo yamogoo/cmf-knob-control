@@ -16,7 +16,7 @@ describe('BasePagination', () => {
       }
     })
 
-    const indicators = component.findAll('[data-test-id="pagination-indicator"]')
+    const indicators = component.findAll('[data-testid="pagination-indicator"]')
     const length = indicators.length
 
     expect(length).toBe(itemsCount)
@@ -34,7 +34,7 @@ describe('BasePagination', () => {
       }
     })
 
-    const indicators = component.findAll('[data-test-id="pagination-indicator"]')
+    const indicators = component.findAll('[data-testid="pagination-indicator"]')
     const html = indicators[0].html()
 
     expect(html).toContain(slotCOntent)

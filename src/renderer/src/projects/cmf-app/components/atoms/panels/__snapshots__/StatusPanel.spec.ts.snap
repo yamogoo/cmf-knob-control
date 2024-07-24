@@ -1,19 +1,19 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`StatusPanel > should render default slot content (<p>Action Slot Content</p>) 1`] = `
-"<div class="cmf-app-status-panel__action" data-test-id="status-panel__action">
+"<div class="cmf-app-status-panel__action" data-testid="status-panel__action">
   <p>Action Slot Content</p>
 </div>"
 `;
 
 exports[`StatusPanel > should render default slot content (<p>Default Slot Content</p>) 1`] = `
-"<div class="cmf-app-status-panel__info" data-test-id="status-panel__info">
+"<div class="cmf-app-status-panel__info" data-testid="status-panel__info">
   <p>Default Slot Content</p>
 </div>"
 `;
 
 exports[`StatusPanel > should render default slot content (<p>Status Slot Content</p>) 1`] = `
-"<div class="cmf-app-status-panel__status" data-test-id="status-panel__status">
+"<div class="cmf-app-status-panel__status" data-testid="status-panel__status">
   <div class="cmf-app-wifi-symbol">
     <!--v-if--><svg class="cmf-app-wifi-disconnected-icon" width="32" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fill-rule="evenodd" clip-rule="evenodd" d="M7.53241 1L20.5324 23.5167L22.2645 22.5167L9.26446 0L7.53241 1ZM21.6098 16.2225C21.1094 15.2118 20.3722 14.3393 19.4706 13.6775L17.7192 10.644C19.9724 11.2621 21.8724 12.734 23.0497 14.6902L21.6098 16.2225ZM25.1635 12.4407C23.078 9.4678 19.6781 7.48409 15.8078 7.33343L14.657 5.34022C14.8809 5.32958 15.1062 5.3242 15.3328 5.3242C19.9276 5.3242 24.0054 7.53773 26.5581 10.9566L25.1635 12.4407ZM9.68733 8.73242L8.68667 6.99923C6.88671 7.97188 5.32399 9.32732 4.10759 10.9565L5.5022 12.4406C6.58327 10.8995 8.01749 9.62431 9.68733 8.73242ZM15.3328 2.32422C14.5438 2.32422 13.7673 2.37797 13.0069 2.48201L11.9359 0.62701C13.038 0.428081 14.1733 0.324219 15.3328 0.324219C21.2506 0.324219 26.5366 3.02972 30.0212 7.27131L28.6387 8.74245C25.5241 4.83122 20.7212 2.32422 15.3328 2.32422ZM7.1859 4.39983L6.18548 2.66705C4.05659 3.83862 2.17649 5.40644 0.644531 7.27115L2.02695 8.74229C3.43537 6.97368 5.18901 5.4922 7.1859 4.39983ZM12.1902 13.0676L11.1887 11.3329C9.71037 12.1011 8.47208 13.2675 7.616 14.69L9.05585 16.2223C9.72991 14.8609 10.8338 13.7502 12.1902 13.0676ZM11.356 19.3242C11.356 17.7073 12.3211 16.3157 13.7066 15.6941L14.7176 17.4451C13.9271 17.7037 13.356 18.4473 13.356 19.3242C13.356 20.4159 14.241 21.3009 15.3328 21.3009C15.8399 21.3009 16.3024 21.11 16.6523 20.7961L17.6631 22.5469C17.0083 23.0213 16.2032 23.3009 15.3328 23.3009C13.1365 23.3009 11.356 21.5205 11.356 19.3242Z" fill="black"></path>

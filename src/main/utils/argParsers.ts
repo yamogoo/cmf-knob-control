@@ -5,12 +5,10 @@ export const parseEnvArgs = (str: string, opst = { divider: ',' }): Array<string
 
 export const parseVPIdEnvArgs = (str: string): Array<Array<string>> => {
   const items = parseEnvArgs(str)
-
   const arr: Array<Array<string>> = []
 
   for (let i = 0; i < items.length; i++) {
     const item = items[i]
-
     const args = parseEnvArgs(item, { divider: ':' })
     arr.push(args)
   }

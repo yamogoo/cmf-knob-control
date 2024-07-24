@@ -19,9 +19,7 @@ module.exports = {
     ecmaVersion: 'latest'
   },
   rules: {
-    // Add or modify rules as needed
-    // For example, to suppress the eslint@typescript-eslint/no-unused-vars error
-    // 'no-unused-vars': 'off',
+    'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'off'
   }
 }

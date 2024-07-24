@@ -15,13 +15,13 @@ exports[`CarouselStack > carousel-slider__item > Attributes > should render 2 it
 exports[`CarouselStack > carousel-slider__item > Attributes > should render 3 items DOM element 1`] = `3`;
 
 exports[`CarouselStack > carousel-slider__item > Slots > should render the "default" slot content (<p>Default slot content</p>) 1`] = `
-"<div data-test-id="carousel-stack__item" id="0" class="cmf-app-carousel-stack__item">
+"<div data-testid="carousel-stack__item" id="0" class="cmf-app-carousel-stack__item">
   <p>Default slot content</p>
 </div>"
 `;
 
 exports[`CarouselStack > carousel-slider__item > Slots > should render the "named" slot content (<p>Named slot content</p>) 1`] = `
-"<div data-test-id="carousel-stack__item" id="0" class="cmf-app-carousel-stack__item">
+"<div data-testid="carousel-stack__item" id="0" class="cmf-app-carousel-stack__item">
   <p>Named slot content</p>
 </div>"
 `;

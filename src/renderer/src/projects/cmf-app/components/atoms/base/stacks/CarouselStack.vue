@@ -11,7 +11,7 @@ div(
   )
     div(
       v-for="item, idx in items"
-      data-test-id="carousel-stack__item"
+      data-testid="carousel-stack__item"
       :id="String(idx)"
       :key="idx"
       ref="refItem"
@@ -32,7 +32,7 @@ div(
   )
     MainPagination(
       v-if="itemsLength > 1"
-      data-test-id="MainPagination"
+      data-testid="MainPagination"
       :sid="itemSid"
       :items-count="itemsLength"
     )

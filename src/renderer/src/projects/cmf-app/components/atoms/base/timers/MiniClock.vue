@@ -1,7 +1,7 @@
 <template lang="pug">
 div(:class="[`${APP_PREFIX}-mini-clock`]")
   span(
-    data-test-id="mini-clock__time"
+    data-testid="mini-clock__time"
   ) {{ time }}
 </template>
 
